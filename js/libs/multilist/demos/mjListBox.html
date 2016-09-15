@@ -1,0 +1,492 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>ListBox</title>
+
+<script src="../js/libs/jquery-1.11.1.min.js"></script>
+<script src="../js/libs/underscore-min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<link rel="stylesheet" type="text/css" href="../css/mjAll.css">
+<script src="../js/mjListBox.js"></script>
+
+<script>
+
+$(document).ready(function () {
+
+    function message(msg) {
+        console.log(msg);
+        $("#status").html(msg);
+    }
+
+    function bindEvents() {
+
+        $("#list1").on("checkChange", function (e, data) {
+
+            message("list1: id: " + data.id + " " + data.text + " checked = " + data.checked);
+        });
+
+        $("#list2").on("checkChange", function (e, data) {
+            message("list2: id: " + data.id + " " + data.text + " checked = " + data.checked);
+        });
+
+        $("#list3").on("checkChange", function (e, data) {
+            message("list3: id: " + data.id + " " + data.text + " checked = " + data.checked);
+        });
+    }
+
+    // events
+
+    $("#sidepanel ul li a").click(function (e) {
+
+        e.preventDefault();
+
+        $(e.target).parent().parent().find(".active").removeClass("active");
+        $(e.target).addClass("active");
+    });
+
+    $("a[data-op]").click(function (e) {
+
+        e.preventDefault();
+
+        var op = $(this).attr("data-op");
+
+        switch (op) {
+            case "getChecked":
+
+                var arr = $("#list1").mjListBox("getChecked");
+                var checked = [];
+
+                for (var i = 0; i < arr.length; i++)
+                    checked.push(arr[i].id);
+
+                message(checked.join());
+                break;
+
+            case "getChecked2":
+
+                var arr = $("#list2").mjListBox("getChecked");
+                var str = "";
+
+                for (var i = 0; i < arr.length; i++)
+                    str += arr[i].id + ", ";
+
+                message(str);
+                break;
+
+            case "getSelected":
+
+                var arr = $("#list1").mjListBox("getSelected");
+                var selected = [];
+
+                for (var i = 0; i < arr.length; i++)
+                    selected.push(arr[i].id);
+
+                message(selected.join());
+                break;
+
+            case "add":
+
+                var data = { id: 88, text: "Ricki Martin", checked: 0, image: "test.png" };
+
+                $("#list1").mjListBox("add", data);
+                break;
+
+            case "insert":
+
+                var data = { id: 99, text: "James Blake", checked: 0, image: "test.png" };
+
+                $("#list1").mjListBox("insertAt", 5, data);
+                break;
+
+            case "update":
+
+                var data = { id: 99, text: "James Blake", checked: 0, image: "test.png" };
+
+                $("#list1").mjListBox("update", 5, data);
+                break;
+
+            case "remove":
+
+                $("#list1").mjListBox("removeAt", 5);
+                break;
+
+            case "disable":
+
+                $("#list1").mjListBox("disable", 5);
+                break;
+
+            case "enable":
+
+                $("#list1").mjListBox("enable", 5);
+                break;
+
+
+            case "disable-all":
+
+                $("#list1").mjListBox("disableAll");
+                break;
+
+            case "enable-all":
+
+                $("#list1").mjListBox("enableAll");
+                break;
+
+            case "close":
+
+                $("#list1").mjListBox("close");
+                break;
+
+            case "checkAll":
+
+                $("#list1").mjListBox("checkAll");
+                message("");
+                break;
+
+            case "uncheckAll":
+
+                $("#list1").mjListBox("uncheckAll");
+                message("");
+                break;
+
+            case "selectAll":
+
+                $("#list1").mjListBox("selectAll");
+                message("");
+                break;
+
+            case "deselectAll":
+
+                $("#list1").mjListBox("deselectAll");
+                message("");
+                break;
+
+            case "hasChanged":
+
+                var changed = $("#list1").mjListBox("hasChanged");
+                message("changed = " + changed);
+                break;
+
+
+            case "scrollTo":
+
+                var changed = $("#list1").mjListBox("scrollTo", 3);
+                break;
+        }
+    });
+
+    $("[data-ex]").click(function(e) {
+
+        e.preventDefault();
+
+        var ex = $(e.currentTarget).attr("data-ex");
+
+        var options = {};
+
+        var data;
+
+        switch (ex) {
+            case "listview":
+
+                data = [
+                { id: 1, text: "Strawberry from Australia", },
+                { id: 2, text: "Banana from Brazil", },
+                { id: 3, text: "Kiwi from New Zealand", },
+                { id: 4, text: "Orange for Unites States of America", },
+                { id: 5, text: "Mango from Spain", },
+                { id: 6, text: "Melon from Turkey", },
+                { id: 7, text: "Lime", },
+                { id: 8, text: "Apricot", },
+
+                { id: 9, text: "Apple", },
+                { id: 10, text: "Mango", },
+                { id: 11, text: "Melon", },
+                { id: 12, text: "Lime", },
+                { id: 13, text: "Apricot", },
+                { id: 14, text: "Apple", }];
+
+
+                $("#list1").mjListBox({ data: data, type: "checkbox", filter: true });
+                $("#list2").html("");
+                $("#list3").html("");
+                bindEvents();
+                break;
+
+            case "checklist":
+
+                data = [
+                { id: 1, text: "Michael Jackson", checked: 0, image: "test.png" },
+                { id: 2, text: "Katie Perry", checked: 0, image: "test.png" },
+                { id: 3, text: "Rhianna", checked: 0, image: "test.png" },
+                { id: 4, text: "Geoff Buckley", checked: 0, image: "test.png" },
+                { id: 5, text: "Amy Winehouse", checked: 0, image: "test.png" },
+                { id: 6, text: "Jimi Hendrix", checked: 0, image: "test.png" },
+                { id: 7, text: "Wolfgang Amedeus Mozart", checked: 0, image: "test.png" },
+                { id: 8, text: "Daft Punk", checked: 0, image: "test.png" },
+                { id: 9, text: "Dead Maus", checked: 1, image: "test.png" }];
+
+                $("#list1").mjListBox({ data: data, type: "checkbox" });
+                $("#list2").html("");
+                $("#list3").html("");
+                bindEvents();
+                break;
+
+            case "radiolist":
+
+                data = [
+                { id: 1, text: "White", checked: 1 },
+                { id: 2, text: "Black", checked: 0, disabled: true },
+                { id: 3, text: "Red", checked: 0 },
+                { id: 4, text: "Green", checked: 0 },
+                { id: 5, text: "Blue", checked: 0 },
+                { id: 6, text: "Yellow", checked: 0 },
+                { id: 7, text: "Orange", checked: 0 },
+                { id: 8, text: "Grey", checked: 0 },
+                { id: 9, text: "Purple", checked: 0 },
+                { id: 10, text: "Magenta", checked: 0 },
+                { id: 11, text: "Brown", checked: 0 }];
+
+                $("#list1").mjListBox({ data: data, type: "radiobutton" });
+                $("#list2").html("");
+                $("#list3").html("");
+                bindEvents();
+                break;
+
+            case "imagelist":
+
+                data = [
+                { id: 1, text: "<i>beyonce</i>", image: "beyonce.jpg" },
+                { id: 2, text: "<b>britany</b>", image: "britany.jpg" },
+                { id: 3, text: "<i>rhianna</i>", image: "rhianna.jpg" }
+                ];
+
+                $("#list1").mjListBox({ data: data, type: "checkbox", image_path: "images/", });
+                $("#list2").html("");
+                $("#list3").html("");
+                bindEvents();
+                break;
+
+            case "inputlist":
+
+                data = [
+                { id: 1, text: "Color", value: "white" },
+                { id: 2, text: "Age", value: 21, disabled: true },
+                { id: 3, text: "Sex", value: "yes" },
+                { id: 4, text: "Height", value: "175cm" },
+                { id: 5, text: "Weight", value: "85kg" },
+                { id: 6, text: "CPU", value: "Intel" }
+                ];
+
+                $("#list1").mjListBox({ data: data, type: "input" });
+                $("#list2").html("");
+                $("#list3").html("");
+                bindEvents();
+                break;
+
+            case "bigdata":
+
+                data = [];
+
+                message("building data");
+
+                for (var i = 0; i < 3000; i++) {
+                    data.push({ id: i, text: String(i) });
+                }
+
+                message("filling list");
+
+                $("#list1").mjListBox({ data: data, type: "checkbox" });
+
+                message("finished");
+                bindEvents();
+                break;
+
+            case "multi-instance":
+
+                var list1 = [
+                        { id: 1, text: "Europe", image: 'test.png' },
+                        { id: 2, text: "Spain", image: 'test.png' },
+                        { id: 3, text: "France", image: 'test.png' },
+                        { id: 4, text: "Germany", image: 'test.png' },
+                        { id: 5, text: "Italy", image: 'test.png' },
+                        { id: 6, text: "Switzerland", image: 'test.png' },
+                        { id: 7, text: "England", image: 'test.png' },
+                        { id: 8, text: "Portugal", image: 'test.png' },
+                        { id: 9, text: "Austria", image: 'test.png' }
+                ];
+
+                var list2 = [
+                { id: 1, text: "America" },
+                { id: 2, text: "USA" },
+                { id: 3, text: "Canada", checked: 1 },
+                { id: 4, text: "Mexico", checked: 1 },
+                { id: 5, text: "Columbia" },
+                { id: 6, text: "Brazil" },
+                { id: 7, text: "Equador" },
+                { id: 8, text: "Argentina" },
+                { id: 9, text: "Venuzuela" },
+                { id: 10, text: "Peru" },
+                { id: 11, text: "Uruguay" },
+                { id: 12, text: "Paraguay" },
+                { id: 13, text: "Chile" }
+                ];
+
+                var list3 = [
+                { id: 1, text: "Japan" },
+                { id: 2, text: "China" },
+                { id: 3, text: "Korea" },
+                ];
+
+                $("#list1").mjListBox({
+                    data: list1,
+                    type: 'checkbox'
+                });
+
+                $("#list2").mjListBox({
+                    data: list2,
+                    type: 'checkbox'
+                });
+
+                $("#list3").mjListBox({
+                    data: list3,
+                    type: 'radiobutton'
+                });
+
+                $("#list1").on("checkChange", function (e, data) {
+
+                    message("id: " + data.id + " " + data.text + " checked = " + data.checked);
+
+                    message(list1);
+                    message(list2);
+                    message(list3);
+                });
+                $("#list2").on("checkChange", function (e, data) {
+                    message("id: " + data.id + " " + data.text + " checked = " + data.checked);
+
+                    message(list1);
+                    message(list2);
+                    message(list3);
+                });
+
+                $("#list3").on("checkChange", function (e, data) {
+                    message("id: " + data.id + " " + data.text + " checked = " + data.checked);
+
+                    message(list1);
+                    message(list2);
+                    message(list3);
+                });
+                break;
+
+            case "template":
+
+                var data = [
+                { id: 1, text: "Color" },
+                { id: 2, text: "Age", disabled: true },
+                { id: 3, text: "Sex", selected: 1 },
+                { id: 4, text: "Height" },
+                { id: 5, text: "Weight" },
+                { id: 6, text: "CPU" }
+                ];
+
+                $("#list1").mjListBox({ data: data, template_id: "file-list-template" });
+                $("#list2").html("");
+                $("#list3").html("");
+
+                $("#list1").on("dataActionClick", function (e, d) {
+
+                    switch (d.action) {
+
+                        case "apply":
+
+                            console.log("apply");
+                            console.log(d.data);
+                            break;
+
+                        case "delete":
+
+                            console.log("delete");
+                            console.log(d.data);
+                            break;
+                    }
+                });
+                break;
+        }
+    });
+
+    $("a[data-ex='listview']").click();
+});
+
+</script>
+
+</head>
+
+<body>
+
+<div class="demo wrapper">
+
+    <div id="sidepanel">
+
+	    <ul>
+		    <li><a data-ex="listview" class="active">list view</a></li>
+		    <li><a data-ex="checklist">check list</a></li>
+		    <li><a data-ex="radiolist">radio button list</a></li>
+            <li><a data-ex="inputlist">input list</a></li>
+		    <li><a data-ex="imagelist">image list</a></li>
+            <!--<li><a data-ex="bigdata">big data test</a></li>-->
+            <li><a data-ex="multi-instance">multi instance</a></li>
+            <li><a data-ex="template">template</a></li>
+	    </ul>
+
+        <h4>functions</h4>
+
+        <ul>
+            <li><a href="#" data-op="getChecked">get checked</a></li>
+            <li><a href="#" data-op="getSelected">get selected</a></li>
+            <li><a href="#" data-op="checkAll">check all</a></li>
+            <li><a href="#" data-op="uncheckAll">uncheck all</a></li>
+            <li><a href="#" data-op="selectAll">select all</a></li>
+            <li><a href="#" data-op="deselectAll">deselect all</a></li>
+            <li><a href="#" data-op="add">add</a></li>
+            <li><a href="#" data-op="insert">insert</a></li>
+            <li><a href="#" data-op="update">update</a></li>
+            <li><a href="#" data-op="remove">remove</a></li>
+            <li><a href="#" data-op="disable">disable</a></li>
+            <li><a href="#" data-op="enable">enable</a></li>
+            <li><a href="#" data-op="disable-all">disable all</a></li>
+            <li><a href="#" data-op="enable-all">enable ll</a></li>
+            <li><a href="#" data-op="close">close</a></li>
+            <li><a href="#" data-op="hasChanged">has Changed?</a></li>
+            <li><a href="#" data-op="scrollTo">scrollTo</a></li>
+        </ul>
+
+    </div>
+
+    <div class="content">
+       
+        <div id="list-container">
+
+            <div id="list1" class="list"></div> 
+            <div id="list2" class="list"></div> 
+            <div id="list3" class="list"></div>                        
+         
+        </div>
+
+        <div id="status"></div>
+
+    </div>
+
+</div>  <!-- wrapper -->
+
+<script type="text/template" id="file-list-template">
+
+    <a href="#" class="apply-btn" data-action="apply"><%= text %></a>
+    <a href="#" class="delete-btn" data-action="delete">x</a>
+
+</script>
+
+</body>
+</html>
+
+
+

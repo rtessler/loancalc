@@ -1,0 +1,204 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>mjGrid</title>
+
+<script src="../js/libs/jquery-1.11.1.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<link rel="stylesheet" type="text/css" href="../css/mjAll.css">
+<script src="../js/mjGrid.js" ></script>
+<script src="../js/mjScrollBar.js" ></script>
+
+<script>
+
+$(document).ready(function () {
+
+    var self = this;
+
+    function message(msg) {
+        //console.log(msg);
+        $("#status").html(msg);
+    }
+
+    //$("#sidepanel ul li a").click(function (e) {
+
+    //    e.preventDefault();
+
+    //    $(e.target).parent().parent().find(".active").removeClass("active");
+    //    $(e.target).addClass("active");
+    //});
+
+    // id
+    // width
+    // text
+    // field  field in data
+    // datarenderer
+    // headerrenderer
+    // colspan ?????
+
+    function cellFormat(val, y, x)
+    {
+        if (x == 2)
+            return "formatted";
+
+        return val;
+    }
+
+    $("ul.test a").click(function(e) {
+
+        e.preventDefault();
+
+        var op = $(e.currentTarget).attr("data-op");
+
+        switch (op) {
+            case "10000-rows":
+
+                var columns = [
+                    "#",
+                    "Duration",
+                    "%",
+                    "Start",
+                    "Finish",
+                    "drive"];
+
+                var rows = [];
+
+                var dt = new Date();
+
+                for (var i = 0; i < 10000; i++)
+                    rows[i] = [i, (i + 1) + " minutes", i + "%", dt.toDateString(), dt.toDateString(), "away"];
+
+                var options = {
+                    columns: columns,
+                    rows: rows,
+                    pagesize: 15,
+                    columnFormatter: null,
+                    cellFormatter: cellFormat
+                };
+
+                $("#grid-container").mjGrid(options);
+                break;
+
+            case "10-rows":
+
+                var columns = [
+                    "#",
+                    "Duration",
+                    "%",
+                    "Start",
+                    "Finish",
+                    "drive"];
+
+                var rows = [];
+
+                var dt = new Date();
+
+                for (var i = 0; i < 10; i++)
+                    rows[i] = [i, (i + 1) + " minutes", i + "%", dt.toDateString(), dt.toDateString(), "away"];
+
+                var options = {
+                    columns: columns,
+                    rows: rows,
+                    pagesize: 15,
+                    columnFormatter: null,
+                    cellFormatter: null
+                };
+
+                $("#grid-container").mjGrid(options);
+                break;
+        }
+    });
+
+    $("ul.op li a").click(function (e) {
+
+        var op = $(e.currentTarget).attr("data-op");
+        var new_data = ["new", "5 days", 99, 99, 99, 1];
+        var s = s;
+
+        switch (op) {
+            case "addRow":
+
+                s.mjGrid("addRow", new_data);
+                break;
+
+            case "insertRow":
+
+                s.mjGrid("insertRow", 5, new_data);
+                break;
+
+            case "deleteRow":
+
+                s.mjGrid("deleteRow", 5);
+                break;
+
+            case "updateRow":
+
+                s.mjGrid("update-row", new_data);
+                break;
+
+            case "updateCell":
+
+                s.mjGrid("update-cell", 2, 2, "updated");
+                break;
+
+            default:
+
+                s.mjGrid(op);
+                break;
+
+        }
+    });
+
+    $("ul.test a[data-op='10000-rows']").trigger("click");
+
+});
+
+</script>
+
+</head>
+
+<body>
+
+<div class="demo wrapper">
+
+    <div id="sidepanel">
+
+	    <ul class="test">
+
+		    <li><a href="#" data-op="10000-rows" class="active">10000 rows</a></li>
+		    <li><a href="#" data-op="10-rows">10 rows</a></li>
+
+        </ul>
+
+        <h4>functions</h4>
+
+        <ul class="op">
+
+            <li><a href="#" data-op="addRow">add row</a></li>
+            <li><a href="#" data-op="insertRow">insert row 5</a></li>
+            <li><a href="#" data-op="removeRow">remove row 5</a></li>
+            <li><a href="#" data-op="updateRow">update row 5</a></li>
+            <li><a href="#" data-op="updateCell">update cell 2,2</a></li>
+            <li><a href="#" data-op="getRow">get row 2 data</a></li>
+            <li><a href="#" data-op="close">close</a></li>
+	    </ul>
+
+    </div>
+
+    <div class="content">
+       
+        <div id="grid-container" style="width: 100%; height: 100%;"></div>
+
+        <div id="status"></div> 
+
+    </div>
+
+</div>  <!-- wrapper -->
+
+</body>
+</html>
+
+
+

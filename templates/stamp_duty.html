@@ -1,0 +1,182 @@
+<div class="calc stamp-duty">
+
+<div class="outer-container rounded">
+<h3>Stamp Duty</h3>
+
+<div class="calculator rounded">
+
+<div class="left-div">
+
+<p class="section-heading">Enter your details</p>
+
+<div class="calc-panel rounded panel" >
+
+<table>
+<tr>
+<td>state/territory:</td>
+
+<td>
+    <select id="state" name="state">
+	    <option value="ACT">ACT</option>
+        <option value="NSW" selected>NSW</option>
+        <option value="NT">NT</option>
+        <option value="QLD">QLD</option>
+        <option value="SA">SA</option>
+        <option value="TAS">TAS</option>
+        <option value="VIC">VIC</option>
+        <option value="WA">WA</option>
+    </select>
+</td>
+</tr>
+
+<tr><td style="line-height:5px;">&nbsp;</td></tr>
+
+<tr>
+<td>Value of property:</td>
+</tr>
+
+<tr>
+<td><div id="property_value_slider" class="slider"></div></td>
+<td><div style="position:relative; top:5px;">$ <input id="property_value" name="property_value" value="140,000" class="short-text" /></div></td>
+</tr>
+
+<tr><td style="line-height:5px;">&nbsp;</td></tr>
+
+<tr>
+<td>Loan Amount:</td>
+</tr>
+
+<tr>
+<td><div id="loan_amount_slider" class="slider"></div></td>
+<td><div style="position:relative; top:5px;">$ <input id="loan_amount" name="loan_amount" value="100,000" class="short-text" /></div></td>
+</tr>
+
+<tr><td style="line-height:5px;">&nbsp;</td></tr>
+
+<tr>
+    <td valign="top">Property is:</td>  
+<td nowrap>
+    	<input type="radio" id="property_type" name="property_type" value="live in" checked />to live in<br>
+        <input type="radio" id="property_type" name="property_type" value="investment" />investment
+</td>  
+</tr>
+
+<tr><td style="line-height:5px;">&nbsp;</td></tr>
+
+<tr>
+    <td>Are you a first home buyer?</td>  
+	<td nowrap>
+    	<input type="radio" id="first_home_buyer" name="first_home_buyer" value="yes" />Yes<br>
+        <input type="radio" id="first_home_buyer" name="first_home_buyer" value="no" checked />No
+    </td>  
+</tr>
+</table>
+
+</div> <!-- calc-panel -->
+</div> <!-- left-div -->
+
+<div class="right-div">
+
+	<p class="section-heading">View your results</p>
+    
+
+
+    <div class="result-panel rounded panel">
+    
+        <table>
+        <tr>
+            <td>Mortgage Registration Fee:</td>
+            <td><span id="registration_fee">0</span></td>
+        </tr>
+        
+        <tr><td style="line-height:5px;">&nbsp;</td></tr>
+        
+        <tr>
+            <td>Transfer Fee:</td>
+            <td><span id="transfer_fee">0</span></td>
+        </tr>       
+        
+        <tr><td style="line-height:5px;">&nbsp;</td></tr>
+        
+        <tr>
+            <td>Stamp Duty on Property:</td>
+            <td><span id="duty">0</span></td>
+        </tr>
+        </table>   
+        
+        <br>   
+
+        <div id="result" class="rounded">
+        
+        	<table cellpadding="0" cellspacing="0" >
+                <tr>
+                <td><label id="label1">Total:</label></td>
+                <td><label id="total">0</label></td>
+                </tr>            
+            </table>
+        
+        </div>
+        
+        
+        <p>These figures are a guide only and may not reflect current stamp duty values</p>
+		<p>see <a href="http://www.varcalc.com.au/calculators/main/640AU/stampduty.asp">www.varcalc.com.au</a> for current data</p>
+    </div> <!-- result-panel -->
+
+</div> <!-- right-div> -->
+
+<div id="email-form" >
+
+<form name="email-form" action="#" method="post">
+
+<h3>Email a Friend</h3>
+
+<div id="errmsg"></div>
+
+<div id="email-response"></div>
+
+<div style="float:left; padding-right: 30px; ">
+<label for="from">Your email address</label><br>
+<input id="from" name="from" class="text normal-text" />
+</div>
+
+<div>
+<label for="to">Your Friend's email address</label><br>
+<input id="to" name="to" class="text normal-text" />
+</div>
+
+<div>
+<label for="subject">Subject</label><br>
+<input id="subject" name="subject" class="text long-text" value="mortgage loan repayment"/>
+</div>
+
+<div>
+<label for="message">Message</label><br>
+<textarea id="message" name="message" cols="40" rows="4" class="text"></textarea>
+</div>
+
+<button type="submit" id="send_email" value="Send" >Send</button>
+
+</form>
+</div>
+
+
+</div> <!-- calculator -->
+
+<div class="functions">
+
+    <ul>
+        <li><br><a class="info" href="#" title="info"><img src="images/info.png" width="19" height="18"></a><br><br></li>
+        <li><a class="print" href="#" title="print"><img src="images/print.png" width="18" height="19"></a><br><br></li>
+        <li><a class="save" href="#" title="save"><img src="images/save.png" width="18" height="18"></a><br><br></li>
+        <li><a class="email" href="#" title="email"><img src="images/email.png" width="16" height="17"></a><br><br></li>
+    </ul>
+
+</div>
+
+<div id="infodialog" title="Stamp Duty Calculator"></div>
+
+</div> <!-- outer-container -->
+
+
+
+</div>

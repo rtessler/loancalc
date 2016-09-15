@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Loan Comparison Calculator</title>
+
+
+<!--<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css">-->
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7/themes/ui-lightness/jquery-ui.css">
+<!--<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.8.23.custom/css/ui-lightness/jquery-ui-1.8.23.custom.css">-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+<!--<script src="js/jquery-ui-1.8.23.custom/js/jquery-ui-1.8.23.custom.min.js"></script>-->
+
+
+<script type="application/javascript">
+
+$(document).ready(function() {
+
+	$( "#loan_amount_slider" ).slider({ min: 1000, max: 5000000, step: 5000, range: "min", animate: "true",
+		slide: function( event, ui ) {
+			$( "#loan_amount" ).val( ui.value );
+
+		}
+	});
+		
+	$( "#interest_rate_slider" ).slider({ min: 0.25, max: 25.0, step: 0.1, range: "min", animate: "true",
+			slide: function( event, ui ) {
+				$( "#interest_rate" ).val( ui.value );
+
+			}		
+	 });
+	
+	$( "#loan_term_slider" ).slider({ min: 0.5, max: 50, step: 0.5, range: "min", animate: "true",
+			slide: function( event, ui ) {
+				$( "#loan_term" ).val( ui.value );
+
+			}	
+	 });
+
+
+});
+
+
+
+</script>
+
+<style>
+
+body {
+	color: #3E3E3E;
+    font-family: Tahoma,Lucida Sans,Geneva,sans-serif;
+    font-size: 13px;
+}
+
+.slider { width: 90px; float:left; margin-right: 10px; position: relative; left: 6px; top: 6px; }
+.long-text { width: 80px; }
+.short-text { width: 60px; }
+
+.outer-container { background: #E4E4E4; width: 630px; height: 400px; padding: 7px; padding-top: 2px; color: #000; }
+.calculator { background: #E90728; width: 590px; height: 320px; padding: 7px; padding-top: 2px; float: left; }
+
+.rounded { -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; }
+
+.panel {
+	background: #fefefe; /* Old browsers */
+	background: -moz-linear-gradient(top,  #fefefe 0%, #cccccc 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #fefefe 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #fefefe 0%,#cccccc 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #fefefe 0%,#cccccc 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #fefefe 0%,#cccccc 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+	
+	border: 3px solid #CBC8C8;
+	color: #000;
+}
+
+#result {
+	background: #f6b318; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f6b318 0%, #fe9902 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6b318), color-stop(100%,#fe9902)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f6b318 0%,#fe9902 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f6b318 0%,#fe9902 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f6b318 0%,#fe9902 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #f6b318 0%,#fe9902 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6b318', endColorstr='#fe9902',GradientType=0 ); /* IE6-9 */
+	
+	border: 3px solid #FBA30A;
+	color: #fff;
+	font-weight: bold;
+	text-align:center;
+}
+
+#result table { border-collapse:collapse; width: 100%; text-align: left; }
+#result table td { padding: 3px; }
+
+.left-div { float: left; color: #fff;  }
+.right-div { float: left; color: #fff; position: relative; left: 5px; }
+
+
+.section-heading { font-size: 11px;  font-weight:bold; padding-left: 20px; }
+
+.calc-panel { padding: 15px; height: 250px;}
+.result-panel { padding: 15px;  height: 250px; }
+
+.function-div { float: left; position: relative; left: 6px;  }
+.functions { list-style:none; padding: 0px; margin: 0px; }
+
+.disclaimer { color: #3E3E3E; font-size: 11px; }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="outer-container rounded">
+<h3>Loan Repayments</h3>
+
+
+
+<div class="left-div">
+
+<p class="section-heading">Enter your loan details</p>
+
+
+
+<div>
+    <label for="loan_amount" >Amount:</label>
+    <br>
+    <div id="loan_amount_slider" class="slider"></div>
+    $ <input id="loan_amount" name="loan_amount" value="100000" class="long-text" />
+</div>
+
+<div>
+    <label for="interest_rate" >Interest Rate:</label>
+    <br>
+    <div id="interest_rate_slider" class="slider"></div>
+	&nbsp; &nbsp;<input id="interest_rate" name="interest_rate" value="7.25" class="short-text" /> %
+</div>
+
+<div>
+    <label for="loan_term" >Loan Term:</label>  
+    <br>
+    <div id="loan_term_slider" class="slider"></div>  
+	&nbsp; &nbsp;<input id="loan_term" name="loan_term" value="25.0"class="short-text" /> years
+</div>
+
+
+
+</div> <!-- left-div -->
+
+
+
+
+
+
+
+</div> <!-- outer-container -->
+
+
+
+
+</body>
+</html>

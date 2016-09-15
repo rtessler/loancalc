@@ -1,0 +1,1417 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    
+    <!--  Mobile viewport optimized -->
+    <!-- see: http://stackoverflow.com/questions/3375706/ipad-browser-width-height-standard -->    
+
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1" />
+
+    <title>Loan Repayment Calculator</title>
+
+    <meta name="keywords" content="loan, money, mortgage, loan repayment, loan calculator, stamp duty" />
+    <meta name="description" content="mortgage repayment calculator">
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1" />
+
+	<meta name="apple-mobile-web-app-capable" content="yes" /> 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	<link rel="apple-touch-icon-precomposed" href="images/iPad_Icon.png">
+	<link rel="shortcut icon" href="images/home.png" />
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+    	<div class="home-page-container"></div>
+            
+    </div>
+
+	<script type="text/template" id="header-template">
+
+		<header>
+			
+            <div class="app-title left">
+                
+                <img src="images/home.png" />
+                <span class="text">&nbsp;&nbsp;Loan Calculator</span>
+
+            </div>
+
+			<!--<a href="#" class="right">Login</a>-->
+
+            <a href="mailto:robert@rtessler.com" class="right">Contact</a>
+
+		</header>
+
+        <div class="clear"></div>
+
+	</script>
+
+	<script type="text/template" id="left-panel-template">
+
+        <nav>
+		    <ul>
+			    <li class="active"><a href="#" calculatorType="<%= app.CALC_TYPE_LOAN_REPAYMENT %>">Loan Repayment</a></li>
+			    <li><a href="#" calculatorType="<%= app.CALC_TYPE_EXTRA_REPAYMENT %>">Extra Repayment</a></li>
+			    <li><a href="#" calculatorType="<%= app.CALC_TYPE_LUMP_SUM %>">Lump Sum</a></li>
+			    <li><a href="#" calculatorType="<%= app.CALC_TYPE_SPLIT_LOAN %>">Split Loan</a></li>
+			    <li><a href="#" calculatorType="<%= app.CALC_TYPE_PRINCIPAL_AND_INTEREST %>">Principal and Interest</a></li>
+			    <li><a href="#" calculatorType="<%= app.CALC_TYPE_BORROWING_POWER %>">Borrowing Power</a></li>
+			    <li><a href="#" calculatorType="<%= app.CALC_TYPE_STAMP_DUTY %>">Stamp Duty</a></li>
+			    <li><a href="#" calculatorType="<%= app.CALC_TYPE_LOAN_COMPARISON %>">Loan Comparison</a></li>
+		    </ul>
+        </nav>
+
+	</script>
+
+	<script type="text/template" id="right-panel-template">
+
+    <ins class="adsbygoogle"
+        style="display:inline-block;width:160px;height:600px"
+        data-ad-client="ca-pub-8278175671827160"
+        data-ad-slot="5416246138"></ins>
+
+	</script>
+
+	<script type="text/template" id="home-page-template">
+
+		<div class="header-container"></div>
+
+        <table class="layout">
+            <tr>
+   
+		        <td class="left-panel-col"><div class="left-panel-container"></div></td>
+
+		        <td class="main-col"><div class="main"></div></td>
+
+		        <td class="right-panel-col"><div class="right-panel-container"></div></td>
+
+            </tr>
+        </table>
+
+	</script>
+
+	<script type="text/template" id="loan-calculator-template">
+
+		<div class="main-title"></div>
+
+        <div class="show-description" title="description">?</div>
+
+		<div class="calculator-container clearfix"></div>
+
+        <br />
+
+
+        
+        <a class="print" href="#" title="print">
+
+            <img class="left" src="images/print.png" />
+
+            <span>&nbsp;print</span>
+
+        </a>		
+
+<!--		<div class="functions">
+
+			<ul>
+			    <li><br><a class="info" href="#" title="info"><img src="images/info.png" width="19" height="18"></a><br><br></li>
+			    <li><a class="print" href="#" title="print"><img src="images/print.png" width="18" height="19"></a><br><br></li>
+			    <li><a class="save" href="#" title="save"><img src="images/save.png" width="18" height="18"></a><br><br></li>
+			    <li><a class="email" href="#" title="email"><img src="images/email.png" width="16" height="17"></a><br><br></li>
+			</ul>
+
+		</div>
+
+		<div id="infodialog" title="Loan Repayment "></div>	-->			
+
+	</script>
+
+	<script type="text/template" id='email-template'>
+
+		<form name="email-form" action="#" method="post">
+
+			<h3>Email a Friend</h3>
+
+			<div id="email-response"></div>
+
+			<div class="field" style="float:left; padding-right: 30px; ">
+			    <label>Your email address</label>
+			    <input class="from text normal-text" />
+                <div class="errmsg"></div>
+			</div>
+
+			<div class="field">
+			    <label>Your Friend&quot;s email address</label>
+			    <input class="to text normal-text" />
+                <div class="errmsg"></div>
+			</div>
+
+			<div class="field">
+			    <label>Subject</label>
+			    <input class="subject text" value="mortgage loan repayment"/>
+                <div class="errmsg"></div>
+			</div>
+
+			<div class="field">
+			    <label>Message</label>
+			    <textarea class="message text" cols="40" rows="4"></textarea>
+                <div class="errmsg"></div>
+			</div>
+
+			<button type="submit" class="send-email" value="Send" >Send</button>
+
+		</form>
+	</script>
+
+	<script type="text/template" id="loan-repayment-template">
+
+        <div class="description">
+        By using this home loan calculator you can work out what your minimum weekly, fortnightly or monthly home loan repayments would be for the amount you are 
+planning to borrow.
+            </div>
+
+        <div class="section-container">
+
+		    <div class="left-div">
+
+			    <div class="panel calc-panel">
+
+                    <div class="field">
+                        <label>Loan term</label>                    
+                        <!--<div class="slider loan-term-slider"></div>  -->
+                        &nbsp; &nbsp;<input class="loan-term short-text" value="<%= app.DEFAULT_LOAN_TERM %>" required="required" /> <span class="units">years</span>
+                    </div>                
+
+				    <div class="field">
+				        <label>Loan amount</label>				    
+				        <!--<div class="slider loan-amount-slider"></div>-->
+				        <%= app.currency_symbol %> <input class="loan-amount" value="<%= app.DEFAULT_LOAN_AMOUNT %>" required />
+				    </div>
+
+				    <div class="field">
+				        <label>Interest rate</label>				    
+				        <!--<div class="slider interest-rate-slider"></div>-->
+					    &nbsp; &nbsp;<input class="interest-rate short-text" value="<%= app.DEFAULT_INTEREST_RATE %>" required="required" /> <span class="units">%</span>
+				    </div>
+
+				    <div class="field">
+				        <label>Repayment frequency</label>&nbsp; &nbsp;   
+				        <select class="repayment-frequency">
+				            <option value="<%= app.FREQUENCY_MONTHLY %>">Monthly</option>
+				            <option value="<%= app.FREQUENCY_FORTNIGHTLY %>">Fortnightly</option>
+				            <option value="<%= app.FREQUENCY_WEEKLY %>">Weekly</option>
+				        </select>
+				    </div>
+
+				    <div class="field">
+				        <label>Repayment type</label>&nbsp; &nbsp; 
+
+				        <select class="repayment-type">
+				            <option value="<%= app.PRINCIPAL_AND_INTEREST %>">principal &amp; Interest</option>
+				            <option value="<%= app.INTEREST_ONLY %>">interest only</option>
+				        </select>
+				    </div>
+
+                    <br />
+
+                    <div class="clear"></div>
+
+			    </div> <!-- calc-panel -->
+		    </div> <!-- left-div -->
+
+		    <div class="right-div">
+
+		        <div class="panel result-panel">
+
+                    <!--<div class="title">Result</div>-->
+
+				    <!--<div class="chart" ></div>  -->
+    <!--                <div class="axis-label y-axis-label vertical-text">amount</div>
+                    <div class="axis-label x-axis-label">years</div>-->
+
+                    <canvas class="canvas" width="<%= app.CANVAS_WIDTH %>" height="<%= app.CANVAS_HEIGHT %>" ></canvas>
+                    <div class="legend"></div>
+		            <br />
+		            <div class="result">
+		        
+		        	    <table>
+		                    <tr>
+		                        <td><label class="period-repayment-label">Monthly repayments</label></td>
+		                        <td><label class="period-repayment">0</label></td>
+		                    </tr>
+
+                            <tr>
+                                <td><label>total cost of loan</label></td>
+                                <td><label class="total-amount">0</label></td>
+                            </tr>
+
+		                    <tr>
+		                        <td><label>total interest payable</label></td>
+		                        <td><label class="total-interest">0</label></td>
+		                    </tr>
+
+		                </table>
+		        
+		            </div>
+		        </div> <!-- result-panel -->
+
+		    </div> <!-- right-div> -->
+
+       </div>
+
+	</script>
+
+    <script type="text/template" id="extra-repayment-template">
+
+        <div class="description">
+            Use this mortgage calculator to find out how much time and interest can you save by paying more than the minimum repayment.
+        </div>
+
+        <div class="section-container">
+
+            <div class="left-div">
+
+                <div class="panel calc-panel">
+
+                    <div class="field">
+                        <label>Loan term</label>&nbsp; &nbsp;             
+                        <!--<div class="slider loan-term-slider"></div>  -->
+	                    <input class="loan-term short-text" value="<%= app.DEFAULT_LOAN_TERM %>" /> <span class="units">years</span>
+                    </div>
+
+                    <div class="field">
+                        <label>Loan amount</label>            
+                        <!--<div class="slider loan-amount-slider"></div>-->
+                        <%= app.currency_symbol %> <input class="loan-amount" value="<%= app.DEFAULT_LOAN_AMOUNT %>" />
+                    </div>
+
+                    <div class="field">
+                        <label>Interest rate</label>&nbsp; &nbsp;            
+                        <!--<div class="slider interest-rate-slider"></div>-->
+	                    <input class="interest-rate short-text" value="<%= app.DEFAULT_INTEREST_RATE %>" /> <span class="units">%</span>
+                    </div>
+
+                    <div class="field">
+                        <label>Repayment frequency</label>&nbsp; &nbsp;   
+                        <select class="repayment-frequency">
+                            <option value="monthly">Monthly</option>
+                            <option value="fortnightly">Fortnightly</option>
+                            <option value="weekly">Weekly</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Extra contribution per payment</label>&nbsp; &nbsp;           
+                        <!--<div class="slider extra-contribution-slider"></div>-->
+                        <%= app.currency_symbol %> <input class="extra-contribution short-text" value="250" />
+                    </div>
+
+                    <div class="field">
+                        <label>Extra contribution starts after</label>&nbsp; &nbsp;           
+                        <!--<div class="slider extra-contribution-start-slider"></div>-->
+                        <input class="extra-contribution-start short-text" value="5.0"  /> <span class="units">years</span>
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div> <!-- calc-panel -->
+            </div> <!-- left-div -->
+
+            <div class="right-div">
+
+                <div class="panel result-panel">
+
+                    <!--<div class="title">Result</div>-->
+
+		            <!--<div class="chart"></div>-->
+                <canvas class="canvas" width="<%= app.CANVAS_WIDTH %>" height="<%= app.CANVAS_HEIGHT %>" ></canvas>
+                <div class="legend"></div>
+                                         
+                    <br />
+                    <div class="result">
+        
+        	            <table>
+
+                            <tr>
+                            <td><label class="label1">Minimum monthly repayments:</label></td>
+                            <td><label class="min-monthly-repayment">0</label></td>
+                            </tr>
+            
+                            <tr>
+                            <td><label class="label2">Incresed monthly repayments:</label></td>
+                            <td><label class="increased-monthly-repayment">0</label></td>
+                            </tr>
+
+                            <tr>
+                            <td><label>Interest saved:</label></td>
+                            <td><label class="interest-saved">0</label></td>
+                            </tr>
+
+                            <tr>
+                            <td><label>Original total:</label></td>
+                            <td><label class="original-total">0</label></td>
+                            </tr>
+
+                            <tr>
+                            <td><label>Updated total:</label></td>
+                            <td><label class="updated-total">0</label></td>
+                            </tr>
+
+                        </table>
+            
+           	            <table>
+            
+                            <tr>
+                            <td><label>Updated time:</label></td>
+                            <td><label class="updated-time">0</label></td>
+                            </tr>
+                               
+                            <tr>
+                            <td><label>Time saved:</label></td>
+                            <td><label class="time-saved">0</label></td>
+                            </tr>                                 
+                        </table>
+        
+                    </div>
+                </div> <!-- result-panel -->
+
+            </div> <!-- right-div> -->
+
+        </div>
+
+    </script>
+
+    <script type="text/template" id="lump-sum-template">
+
+        <div class="description">
+            How much time and interest can you save by paying a lump sum off your home loan? Find out using this mortgage calculator.
+        </div>
+
+        <div class="section-container">
+
+            <div class="left-div">
+
+                <div class="panel calc-panel">
+
+                    <div class="field">
+                        <label>Loan Amount:</label>
+                        <!--<div class="slider loan-amount-slider"></div>-->
+                        <%= app.currency_symbol %> <input class="loan-amount" value="<%= app.DEFAULT_LOAN_AMOUNT %>" />
+                    </div>
+
+                    <div class="field">
+                        <label>Interest Rate:</label>
+                        <!--<div class="slider interest-rate-slider"></div>-->
+	                    &nbsp; &nbsp;<input class="interest-rate short-text" value="<%= app.DEFAULT_INTEREST_RATE %>" /> <span class="units">%</span>
+                    </div>
+
+                    <div class="field">
+                        <label>Loan Term:</label>  
+                        <!--<div class="slider loan-term-slider"></div> --> 
+	                    &nbsp; &nbsp;<input class="loan-term short-text" value="<%= app.DEFAULT_LOAN_TERM %>" /> <span class="units">years</span>
+                    </div>
+
+                    <div class="field">
+                        <label>Repayment Frequency:</label> 
+                        <select class="repayment-frequency">
+                            <option value="monthly">Monthly</option>
+                            <option value="fortnightly">Fortnightly</option>
+                            <option value="weekly">Weekly</option>
+                        </select>
+                    </div>
+
+                    <p><strong>Enter you repayment details</strong></p>
+
+                    <div class="field">
+                        <label>Lump sum amount</label>
+                        <!--<div class="slider lump-sum-slider"></div>-->
+                        <%= app.currency_symbol %> <input class="lump-sum" value="<%= app.DEFAULT_LUMP_SUM %>" />
+                    </div>
+
+                    <div class="field">
+                        <label>Lump sum payment made after</label>
+                        <!--<div class="slider lump-sum-year-slider"></div>-->
+                        &nbsp; &nbsp;<input class="lump-sum-year short-text" value="5.0" /> <span class="units">years</span>
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div> <!-- calc-panel -->
+            </div> <!-- left-div -->
+
+            <div class="right-div">	        
+
+                <div class="panel result-panel">
+
+                    <!--<div class="title">Result</div>-->
+
+		           <!-- <div class="chart"></div>-->
+                    <canvas class="canvas" width="<%= app.CANVAS_WIDTH %>" height="<%= app.CANVAS_HEIGHT %>" ></canvas>
+                    <div class="legend"></div>
+                                  
+                    <br>
+                    <div class="result">
+        
+        	            <table>
+                            <tr>
+                            <td><label class="repayment-frequency">Minimum monthly repayments:</label></td>
+                            <td><label class="repayment">0</label></td>
+                            </tr>
+
+                            <tr>
+                            <td><label>Original total</label></td>
+                            <td><label class="original-total">0</label></td>
+                            </tr>
+
+                            <tr>
+                            <td><label>Updated total</label></td>
+                            <td><label class="updated-total">0</label></td>
+                            </tr>
+            
+                            <tr>
+                            <td><label>Time saved:</label></td>
+                            <td><label class="time-saved">0</label></td>
+                            </tr>
+            
+                            <tr>
+                            <td><label>Interest saved:</label></td>
+                            <td><label class="interest-saved">0</label></td>
+                            </tr>     
+                        
+                            <tr>
+                            <td><label>Updated time:</label></td>
+                            <td><label class="updated-time">0</label></td>
+                            </tr>                                 
+                        </table>
+        
+                    </div>
+                </div> <!-- result-panel -->
+
+            </div> <!-- right-div> -->
+
+        </div>
+
+    </script>
+
+    <script type="text/template" id="split-loan-template">
+
+        <div class="description">
+            Splitting your home loan into fixed and variable rate portions can provide you with both security and flexibility. 
+            This mortgage calculator helps you work out different options for splitting your home loan. 
+        </div>
+
+        <div class="section-container">
+
+        <div class="left-div">
+
+            <div class="panel calc-panel">
+
+                <div class="field">
+                    <label>Loan Amount</label>
+                    <!--<div class="slider loan-amount-slider"></div>-->
+                    <%= app.currency_symbol %> <input class="loan-amount" value="<%= app.DEFAULT_LOAN_AMOUNT %>" />
+                </div>
+
+                <div class="field">
+                    <label>Fixed Portion</label>
+                    <!--<div class="slider fixed-portion-slider"></div>-->
+	                &nbsp; &nbsp;<input class="fixed-portion short-text" value="60.00" /> <span class="units">%</span>
+                </div>
+
+                <div class="field">
+                    <label>Fixed Period</label>  
+                    <!--<div class="slider fixed-period-slider" ></div>  -->
+	                &nbsp; &nbsp;<input class="fixed-period short-text" value="3.0" /> <span class="units">years</span>
+                </div>
+
+                <div class="field">
+                    <label>Fixed Interest Rate</label>  
+                    <!--<div class="slider fixed-interest-rate-slider"></div>  -->
+	                &nbsp; &nbsp;<input class="fixed-interest-rate short-text" value="6.80" /> <span class="units">%</span>
+                </div>
+
+                <div class="field">
+                    <label>Variable Interest Rate</label>  
+                    <!--<div class="slider variable-interest-rate-slider"></div>  -->
+	                &nbsp; &nbsp;<input class="variable-interest-rate short-text" value="8.30" /> <span class="units">%</span>
+                </div>
+
+                <div class="field">
+                    <label>Loan Term</label>  
+                    <!--<div class="slider loan-term-slider"></div>-->  
+	                &nbsp; &nbsp;<input class="loan-term short-text" value="<%= app.DEFAULT_LOAN_TERM %>" /> <span class="units">years</span>
+                </div>
+
+                <div class="field">
+                    <label>Repayment Frequency</label>
+                    &nbsp;&nbsp;
+                    <select class="repayment-frequency">
+                        <option value="monthly">Monthly</option>
+                        <option value="fortnightly">Fortnightly</option>
+                        <option value="weekly">Weekly</option>
+                    </select>
+                </div>
+
+                <div class="clear"></div>
+
+            </div> <!-- calc-panel -->
+        </div> <!-- left-div -->
+
+        <div class="right-div">
+        
+            <div class="panel result-panel">
+
+                <!--<div class="title">Result</div>-->
+
+		        <!--<div class="chart"></div>    -->
+                <canvas class="canvas" width="<%= app.CANVAS_WIDTH %>" height="<%= app.CANVAS_HEIGHT %>" ></canvas>
+                <div class="legend"></div>
+
+                <br>
+                <div class="result">
+        
+        	        <table>
+                        <tr>
+                        <td><label class="label1">Fixed repayment:</label></td>
+                        <td><label class="res1">0</label></td>
+                        </tr>
+            
+                        <tr>
+                        <td><label class="label2">Variable repayment:</label></td>
+                        <td><label class="res2">0</label></td>
+                        </tr>
+            
+                        <tr>
+                        <td><label class="label3">Total Monthly repayment:</label></td>
+                        <td><label class="res3">0</label></td>
+                        </tr>
+            
+                        <tr>
+                        <td><label class="label4">Total Interest payable:</label></td>
+                        <td><label class="res4">0</label></td>
+                        </tr> 
+            
+                        <tr>
+                        <td><label class="label5">Total Interest payable if loan was at a variable rate only:</label></td>
+                        <td><label class="res5">0</label></td>
+                        </tr>                         
+                    </table>
+        
+                </div>
+            </div> <!-- result-panel -->
+
+        </div> <!-- right-div> -->
+            </div>
+    </script>
+
+    <script type="text/template" id="principal-and-interest-template">
+
+        <div class="description">
+
+        </div>
+
+        <div class="section-container">
+
+            <div class="top-div">
+
+                <div class="panel calc-panel">
+
+                    <div class="field" style="float:left; width: 300px;">
+                        <label>Loan Amount:</label>
+                        <div class="slider loan-amount-slider"></div>
+                        <%= app.currency_symbol %> <input class="loan-amount" value="<%= app.DEFAULT_LOAN_AMOUNT %>" />
+                    </div>
+
+                    <div class="field">
+                        <label>Interest Rate:</label>  
+                        <div class="slider interest-rate-slider"></div>  
+	                    &nbsp; &nbsp;<input class="interest-rate short-text" value="<%= app.DEFAULT_INTEREST_RATE %>" /> <span class="units">%</span>
+                    </div>
+
+                    <div class="field" style="float:left; width: 300px;">
+                        <label>Extra payments per month:</label>  
+                        <div class="slider extra-payments-slider"></div>  
+	                    &nbsp; &nbsp;<input class="extra-payments short-text" value="0" />
+                    </div>
+
+                    <div class="field">
+                        <label>Number of Years:</label>  
+                        <div class="slider loan-term-slider"></div>  
+	                    &nbsp; &nbsp;<input class="loan-term short-text" value="<%= app.DEFAULT_LOAN_TERM %>" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div> <!-- calc-panel -->
+            </div> <!-- top-div -->
+
+            <div class="bottom-div">
+	      
+                <div class="panel result-panel">
+    
+    	            <p>Monthly payment: <span class="monthly-payment">0</span></p>
+        
+    <!--                <table class="result-table" >
+                    <tr>
+                        <th>Payment Number (Year <span class="yearid">1</span>) Month</th>           
+                        <th>Interest</th>
+                        <th>Principal</th>
+                        <th>Interest to Date</th>
+                        <th>Principal to Date</th>
+                        <th>Principal Remaining</th>
+                    </tr>
+                    </table>-->
+
+                    <div class="result-table"></div>
+        
+                    <br>
+        
+    <!--                <div class="spinner" style="float: right">
+   
+                        <input value="1" class="yearno short-text" style="float: left;"/>
+            
+                        <div style="float: left;">
+                            <ul>
+                                <li><a class="up" href="#" ><img src="images/up-arrow.png" /></a></li>
+                                <li><a class="down" href="#" ><img src="images/down-arrow.png" /></a></li>
+                            </ul>
+                        </div>
+                    </div>-->
+                
+                </div> <!-- result-panel -->
+
+            </div> <!-- bottom-div> -->
+
+        </div>
+
+    </script>
+
+	<script type="text/template" id="borrowing-power-template">
+
+        <div class="description">
+        This calculator provides an estimate of your borrowing power based on your income, financial commitments and loan details entered. You may also consider looking at our loan repayment calculator to determine your repayments based on the amount you 
+wish to borrow. 
+        </div>
+
+        <div class="section-container">
+
+	        <div class="top-div">
+
+		        <div class="panel calc-panel">
+
+			        <div style="float:left; width:273px; ">
+
+			            <table>
+
+                            <tr>
+                                <td><strong>Income</strong></td>
+                            </tr>
+
+
+			                <tr>
+			                    <td colspan="3">Net salary</td>
+                            </tr>
+
+                            <tr>
+                                <td>
+			                        <select class="net-salary-frequency1">
+				                        <option value="<%= app.FREQUENCY_ANNUAL %>">Annually</option>
+			                            <option value="<%= app.FREQUENCY_MONTHLY %>" selected="selected">Monthly</option>
+			                            <option value="<%= app.FREQUENCY_FORTNIGHTLY %>">Fortnightly</option>
+			                            <option value="<%= app.FREQUENCY_WEEKLY %>">Weekly</option>
+			                        </select>
+			                    </td>
+			    
+                                <td> 
+                                    <span class="currency"><%= app.currency_symbol %></span>
+                                    <input class="net-salary1 short-text" value="<%= app.DEFAULT_MONTHLY_SALARY %>" />
+                                </td>
+			                </tr>
+
+			                <tr>
+			                    <td colspan="3">Net salary 2</td>
+                            </tr>
+
+                            <tr>
+                                <td>
+			                        <select class="net-salary-frequency2 readonly" disabled="disabled">
+				                        <option value="<%= app.FREQUENCY_ANNUAL %>">Annually</option>
+			                            <option value="<%= app.FREQUENCY_MONTHLY %>" selected="selected">Monthly</option>
+			                            <option value="<%= app.FREQUENCY_FORTNIGHTLY %>">Fortnightly</option>
+			                            <option value="<%= app.FREQUENCY_WEEKLY %>">Weekly</option>
+			                        </select>
+			                    </td>
+
+                                <td>
+                                    <span class="currency"><%= app.currency_symbol %></span>
+                                    <input class="net-salary2 readonly short-text" value="0" readonly="readonly" />
+                                </td>
+			                </tr>
+
+			                <tr>
+			                    <td colspan="3">Other net income</td>
+                            </tr>
+
+                            <tr>
+                                <td>
+			                        <select class="other-net-income-frquency" >
+				                        <option value="<%= app.FREQUENCY_ANNUAL %>">Annually</option>
+			                            <option value="<%= app.FREQUENCY_MONTHLY %>" selected="selected">Monthly</option>
+			                            <option value="<%= app.FREQUECY_FORTNIGHT %>">Fortnightly</option>
+			                            <option value="<%= app.FREQUENCY_WEEKLY %>">Weekly</option>
+			                        </select>
+			                    </td>
+			    
+                                <td>
+                                    <span class="currency"><%= app.currency_symbol %></span>
+                                    <input class="other-net-income short-text" value="0" />
+                                </td>
+			                </tr>
+
+			                <tr>
+			                    <td>Joint Income <input class="joint-income" type="checkbox" value="1" /></td>
+                                <td></td>			    
+			                
+			                </tr>
+
+			                <tr>
+			                    <td colspan="3">
+			                        Maximum percent of income available
+			                    </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+			                        <input class="max-income-percent-available short-text readonly" value="30.0" readonly="readonly" /> <span class="units">%</span>
+                                </td>
+
+                                <td>
+			                        <input class="max-income-percent-available-default" type="checkbox" checked="checked" value="1" />default
+			                    </td>
+			                </tr>
+			            </table>
+
+			        </div>
+
+			        <div style="float: left; width:272px;">
+
+                        <table>
+
+                            <tr>
+                                <td colspan="3"><strong>Expenses</strong></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3">Dependents</td>
+                            </tr>
+
+                            <tr>
+                                <td><input class="dependents short-text" value="0" /></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3">Monthly Expenses</td>
+                            </tr>                        
+
+                            <tr>
+                            
+                                <td>
+			                        <span class="currency"><%= app.currency_symbol %></span>
+                                    <input class="monthly-expenses short-text readonly" value="" /> 
+                                </td>
+
+                                <td>
+			                        <input class="monthly-expenses-default" type="checkbox" checked="checked" value="1" />
+			                        default
+			                    </td>
+			                </tr>
+			    
+			        
+			                <tr>
+			                    <td colspan="3">Monthly car loan repayment</td>
+                            </tr>
+
+                            <tr>             			               
+                                <td>
+                                    <span class="currency"><%= app.currency_symbol %></span>
+                                    <input class="car-loan short-text" value="0" />
+                                </td>
+			                </tr>
+			    
+			            <tr>
+			                <td colspan="3">Average monthly credit card repayment</td>
+                        </tr>
+
+                        <tr>           			            
+                            <td>
+                                <span class="currency"><%= app.currency_symbol %></span>
+                                <input class="credit-card short-text" value="0" />
+                            </td>
+			            </tr>			    
+			    
+			            <tr>
+			                <td colspan="3">Other monthly payments</td>
+                        </tr>
+
+                        <tr>                       
+                            <td>
+                                <span class="currency"><%= app.currency_symbol %></span>
+                                <input class="other-monthly-payments short-text" value="0" />
+                            </td>
+			            </tr>
+			            </table>
+
+			        </div> 
+                                
+                    <div class="clear"></div>
+
+		        </div> <!-- calc-panel -->
+	        </div> <!-- top-div -->
+
+
+            <div class="clear"></div>
+
+	        <div class="middle-div">
+
+               <div class="calc-panel">
+
+	    
+	                <div class="field">
+	                    <label >Interest Rate</label>
+	    
+	                    <div class="slider interest-rate-slider"></div>  
+	                    &nbsp; &nbsp;<input class="interest-rate short-text" value="<%= app.DEFAULT_INTEREST_RATE %>" /> <span class="units">%</span>
+	                </div>
+	    
+	                <div class="field">
+	                    <label >Loan term</label>  
+	    
+	                    <div class="slider loan-term-slider"></div>  
+	                    &nbsp; &nbsp;<input class="loan-term short-text" value="<%= app.DEFAULT_LOAN_TERM %>" /> <span class="units">years</span>
+	                </div>
+	    	    
+	                <div class="field" >
+	                    <label>Interest rate buffer</label>  
+	    
+	                    <input class="interest-rate-buffer short-text readonly" value="1.50" readonly="readonly" /> <span class="units">%</span>
+	    
+	                    <input class="interest-rate-buffer-default" type="checkbox" checked="checked" value="1" /> Use default
+	                </div>
+
+			        <div class="field">
+				        <label>Repayment Frequency</label>&nbsp; &nbsp;   
+				        <select class="repayment-frequency">
+				            <option value="<%= app.FREQUENCY_MONTHLY %>">Monthly</option>
+				            <option value="<%= app.FREQUENCY_FORTNIGHTLY %>">Fortnightly</option>
+				            <option value="<%= app.FREQUENCY_WEEKLY %>">Weekly</option>
+				        </select>
+			        </div>
+
+                   </div>
+
+	        </div> 
+
+
+            <div class="clear"></div>
+
+	        <div class="bottom-div">
+		    
+	            <div class="panel result-panel">
+
+                    <!--<div class="title">Result</div>-->
+	   
+			        <!--<div class="chart"></div>--> 
+                
+                    <canvas class="canvas" width="<%= app.CANVAS_WIDTH %>" height="<%= app.CANVAS_HEIGHT %>" ></canvas>
+                    <div class="legend"></div>                   
+
+	                <div class="result">
+	        
+	        	        <table>
+	                    <tr>
+	                        <td><label class="label1">You can borrow up to:</label></td>
+	                        <td><label class="res1">0</label></td>
+	                    </tr>
+	            
+	                    <tr>
+	                        <td><label class="label2">monthly repayments:</label></td>
+	                        <td><label class="res2">0</label></td>
+	                    </tr>
+	                    </table>
+	        
+	                </div>
+	        
+	            </div> <!-- result-panel -->
+
+	        </div> <!-- bottom-div> -->
+
+            <div class="clear"></div>
+
+        </div>
+
+</script>
+
+
+<script type="text/template" id="loan-comparison-template">
+
+    <div class="description">
+        Compare and contrast home loans from different lenders using this quick and easy home loan calculator.
+    </div>
+
+    <div class="section-container">
+
+        <div class="top-div">
+
+            <div class="panel calc-panel">
+
+                <table>
+                    <tr>
+                        <td>
+
+                            <table>
+
+                                <tr>
+                                    <td><strong>Loan 1</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td nowrap>Upfront fees</td>
+                                    <td></td>
+                                    <td><%= app.currency_symbol %></td>
+                                    <td><input class="upfront-fees1 short-text" value="400,00" /></td>
+                                </tr>
+
+                                <tr >    
+                                    <td nowrap>Ongoing fees</td>
+                                    <td> 
+                                        <select class="ongoing-fees-type1">
+                                            <option value="monthly" selected="selected">Monthly</option>
+                                            <option value="fortnightly">Fortnightly</option>
+                                            <option value="weekly">Weekly</option>
+                                        </select>
+                                    </td>   
+                                    <td></td>
+                                    <td><input class="ongoing-fees1 short-text" value="0" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td nowrap>Intro rate</td>
+                                    <td><div class="slider intro-rate-slider1"></div></td>
+	                                <td></td>
+                                    <td><input class="intro-rate1 short-text" value="5.75" /></td>
+                                    <td><span class="units">%</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td nowrap>Intro term</td>
+                                    <td><div class="slider intro-term-slider1"></div></td>
+	                                <td></td>
+                                    <td><input class="intro-term1 short-text" value="24" /></td>
+                                    <td><span class="units">Mth</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td nowrap>Ongoing rate</td>
+                                    <td><div class="slider ongoing-rate-slider1" ></div></td>
+	                                <td></td>
+                                    <td><input class="ongoing-rate1 short-text" value="6.25" /></td>
+                                    <td><span class="units">%</span></td>
+                                </tr>
+
+                            </table>
+
+                            </td>
+
+                            <td>
+
+                                <table>
+
+                                    <tr>
+                                        <td><strong>Loan 2</strong></td>                        
+                                    </tr>
+
+                                    <tr>
+                                        <td nowrap>Upfront fees</td>
+                                        <td></td>
+                                        <td><%= app.currency_symbol %></td>
+                                        <td><input class="upfront-fees2 short-text" value="300,00" /></td>
+                                    </tr>
+
+                                    <tr>    
+                                        <td nowrap>Ongoing fees</td>
+                                        <td> 
+                                            <select class="ongoing-fees-type2" >
+                                                <option value="monthly" selected="selected">Monthly</option>
+                                                <option value="fortnightly">Fortnightly</option>
+                                                <option value="weekly">Weekly</option>
+                                            </select>
+                                        </td>   
+                                        <td></td>
+                                        <td><input class="ongoing-fees2 short-text" value="40.00" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td nowrap>Intro rate</td>
+                                        <td><div class="slider intro-rate-slider2" ></div></td>
+	                                    <td></td>
+                                        <td><input class="intro-rate2 short-text" value="4.25" /></td>
+                                        <td><span class="units">%</span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td nowrap>Intro term</td>
+                                        <td><div class="slider intro-term-slider2" ></div></td>
+	                                    <td></td>
+                                        <td><input class="intro-term2 short-text" value="36" /></td>
+                                        <td><span class="units">Mth</span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td nowrap>Ongoing rate</td>
+                                        <td><div class="slider ongoing-rate-slider2" ></div></td>
+	                                    <td></td>
+                                        <td><input class="ongoing-rate2 short-text" value="5.75" /></td>
+                                        <td><span class="units">%</span></td>
+                                    </tr>
+
+                                </table>
+
+                            </td> 
+                        </tr>
+
+                    </table>
+
+            </div> <!-- calc-panel -->
+        </div> <!-- top-div -->
+
+        <div class="clear"></div>
+
+
+        <div class="middle-div">
+
+            <div class="calc-panel">
+
+                <strong>Enter common loan details</strong>
+                <br>
+
+    
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <div class="field">
+                                <label style="white-space:nowrap;">Loan amount</label>
+                                <div class="clear"></div>
+   
+                                <div class="slider loan-amount-slider"></div>  
+                               <input class="loan-amount" value="<%= app.DEFAULT_LOAN_AMOUNT %>" /> <%= app.currency_symbol %>
+                            </div>
+                        </td>
+
+                        <td>
+    
+                            <div class="field">
+                                <label>Loan term</label>  
+                                <div class="clear"></div>
+    
+                                <div class="slider loan-term-slider" ></div>  
+                                &nbsp; &nbsp;<input class="loan-term short-text" value="<%= app.DEFAULT_LOAN_TERM %>" /> <span class="units">years</span>
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+
+                </div>
+
+        </div> 
+
+
+
+        <div class="bottom-div">
+
+	    
+            <div class="panel result-panel">
+
+                <div class="result">
+        
+        	        <p>Loan #2 will save you: <label class="res0">0</label></p>
+        
+        	        <table >
+                    <tr>
+            	        <td></td>
+                        <td nowrap>Loan #1</td>
+                        <td nowrap>Loan #2</td>
+                    </tr>
+            
+                    <tr>
+                        <td>Initial per month:</td>
+                        <td><label class="res1">0</label></td>
+                        <td><label class="res2">0</label></td>
+                    </tr>
+            
+                    <tr>
+                        <td>Outgoing per month:</td>
+                        <td><label class="res3">0</label></td>
+                        <td><label class="res4">0</label></td>
+                    </tr>
+            
+                    <tr>
+                        <td>Total payable:</td>
+                        <td><label class="res5">0</label></td>
+                        <td><label class="res6">0</label></td>
+                    </tr>
+                                
+                    </table>
+        
+                </div>
+        
+            </div> <!-- result-panel -->
+
+        </div> <!-- bottom-div> -->
+
+    </div>
+
+</script>
+
+    <script type="text/template" id="stamp-duty-template">
+
+        <div class="description">
+            Use this home loan calculator to find out stamp duty costs in your state or territory. 
+        </div>
+
+        <div class="section-container">
+
+            <div class="left-div">
+
+                <div class="panel calc-panel" >
+
+                <table>
+                    <tr>
+                    <td>state/territory:</td>
+
+                    <td>
+                        <select class="state" >
+	                        <option value="ACT">ACT</option>
+                            <option value="NSW" selected="selected">NSW</option>
+                            <option value="NT">NT</option>
+                            <option value="QLD">QLD</option>
+                            <option value="SA">SA</option>
+                            <option value="TAS">TAS</option>
+                            <option value="VIC">VIC</option>
+                            <option value="WA">WA</option>
+                        </select>
+                    </td>
+                    </tr>
+
+                    <tr><td style="line-height:5px;">&nbsp;</td></tr>
+
+                    <tr>
+                    <td>Value of property:</td>
+                    </tr>
+
+                    <tr>
+                    <td><div class="slider property-value-slider" ></div></td>
+                    <td><div><%= app.currency_symbol %> <input class="property-value short-text" value="<%= app.DEFAULT_PROPERTY_VALUE %>" /></div></td>
+                    </tr>
+
+                    <tr><td style="line-height:5px;">&nbsp;</td></tr>
+
+    <!--                <tr>
+                    <td>Loan Amount:</td>
+                    </tr>
+
+                    <tr>
+                    <td><div class="slider loan-amount-slider"></div></td>
+                    <td><div >$ <input class="loan-amount short-text" value="100,000" /></div></td>
+                    </tr>-->
+
+                    <tr><td style="line-height:5px;">&nbsp;</td></tr>
+
+                    <tr>
+                        <td valign="top">Property is:</td>  
+                    <td nowrap>
+    	                    <input type="radio" name="property-type" value="live-in" checked="checked" />to live in<br>
+                            <input type="radio" name="property-type" value="investment" />investment
+                    </td>  
+                    </tr>
+
+                    <tr><td style="line-height:5px;">&nbsp;</td></tr>
+
+                    <tr>
+                        <td>Are you a first home buyer?</td>  
+	                    <td nowrap>
+    	                    <input type="radio" name="first-home-buyer" value="yes" />Yes<br>
+                            <input type="radio" name="first-home-buyer" value="no" checked="checked" />No
+                        </td>  
+                    </tr>
+                </table>
+
+                </div> <!-- calc-panel -->
+            </div> <!-- left-div -->
+
+            <div class="right-div">
+
+                <div class="panel result-panel">
+
+                    <!--<div class="title">Result</div>-->
+    
+                    <table>
+                    <tr>
+                        <td>Mortgage Registration Fee:</td>
+                        <td><span class="registration-fee">0</span></td>
+                    </tr>
+        
+                    <tr><td style="line-height:5px;">&nbsp;</td></tr>
+        
+                    <tr>
+                        <td>Transfer Fee:</td>
+                        <td><span class="transfer-fee">0</span></td>
+                    </tr>       
+        
+                    <tr><td style="line-height:5px;">&nbsp;</td></tr>
+        
+                    <tr>
+                        <td>Stamp Duty on Property:</td>
+                        <td><span class="duty">0</span></td>
+                    </tr>
+                    </table>   
+        
+                    <br>   
+
+                    <div class="result">
+        
+        	            <table>
+                            <tr>
+                            <td><label class="label1">Total:</label></td>
+                            <td><label class="total">0</label></td>
+                            </tr>            
+                        </table>
+        
+                    </div>        
+        
+                    <p>These figures are a guide only and may not reflect current stamp duty values</p>
+		            <p>see <a href="http://www.varcalc.com.au/calculators/main/640AU/stampduty.asp">www.varcalc.com.au</a> for current data</p>
+                </div> <!-- result-panel -->
+
+            </div> <!-- right-div> -->
+
+            </div>
+
+    </script>
+
+    <script type="text/template" id="uk-stamp-duty-template">
+
+        <div class="section-container">
+
+            <div class="left-div">
+
+                <div class="panel calc-panel" >
+
+                    <div class="field">
+                        <label>Property Value</label>
+                        <input class="property-value" value="<%= app.DEFAULT_PROPERTY_VALUE %>" />
+                    </div>
+
+                </div> <!-- calc-panel -->
+            </div> <!-- left-div -->
+
+            <div class="right-div">
+
+                <div class="panel result-panel">
+    
+                    <table>
+                        <tr>
+                            <td>Stamp Duty</td>
+                            <td><span class="stamp-duty">0</span></td>
+                        </tr>
+       
+                        <tr>
+                            <td>Total</td>
+                            <td><span class="total">0</span></td>
+                        </tr>       
+         
+                    </table>
+
+                    <p>Correct at June 2014</p>
+		            <p>see <a href="http://www.moneysavingexpert.com/mortgages/stamp-duty#what" target="_blank">http://www.moneysavingexpert.com/mortgages/stamp-duty#what</a>
+                        <br /> for current data</p>
+
+                </div>        
+        
+            </div> <!-- right-div> -->
+
+        </div>
+
+    </script>
+
+    <script src="js/libs/jquery-1.11.1.min.js"></script>    
+    <script src="js/libs/underscore-min.js"></script>    
+    <script src="js/libs/backbone.1.1.2/backbone-min.js"></script>
+    <script src="js/libs/json3.js"></script>
+    <script src="js/libs/moment.min.js"></script>
+
+	<link rel="stylesheet" href="js/libs/jquery-ui-1.11.1.custom/jquery-ui.css" />
+	<script src="js/libs/jquery-ui-1.11.1.custom/jquery-ui.min.js"></script>
+
+    <script src="js/libs/jquery.ui.touch-punch.min.js"></script>
+
+    <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
+
+    <script src="js/libs/history.js-master/scripts/bundled/html4+html5/jquery.history.js"></script>
+
+    <script src="js/libs/chartjs/Chart.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="js/libs/multilist/css/mjAll.css" />
+    <script src="js/libs/multilist/js/mjGrid.js" ></script>
+    <script src="js/libs/multilist/js/mjScrollBar.js" ></script>
+    
+<!--	<script src="js/libs/d3-master/d3.min.js"></script>
+	<link rel="stylesheet" href="js/libs/x-charts/xcharts.min.css" type="text/css" />
+	<script src="js/libs/x-charts/xcharts.min.js"></script>-->
+
+	<link rel='stylesheet' href='css/loancalc.css' type='text/css' />
+    <link rel='stylesheet' href='css/media.css' type='text/css' />
+	
+	<script src="js/app.js"></script>
+    <script src="js/stdLib.js"></script>
+
+	<script src="js/loancalc.js"></script>
+
+	<script src="js/views/baseView.js"></script>
+	<script src="js/views/headerView.js"></script>
+	<script src="js/views/leftPanelView.js"></script>
+	<script src="js/views/rightPanelView.js"></script>
+	<script src="js/views/homePageView.js"></script>
+	<script src="js/views/emailView.js"></script>
+
+	<script src="js/views/calculatorViews/loanCalculatorView.js"></script>
+
+    <!-- calculator subviews -->
+
+	<script src="js/views/calculatorViews/loanRepaymentView.js"></script>
+    <script src="js/views/calculatorViews/extraRepaymentView.js"></script>
+    <script src="js/views/calculatorViews/lumpSumView.js"></script>
+    <script src="js/views/calculatorViews/splitLoanView.js"></script>
+	<script src="js/views/calculatorViews/borrowingPowerView.js"></script>
+    <script src="js/views/calculatorViews/loanComparisonView.js"></script>
+    <script src="js/views/calculatorViews/stampDutyView.js"></script>
+    <script src="js/views/calculatorViews/ukStampDutyView.js"></script>
+    <script src="js/views/calculatorViews/principalAndInterestView.js"></script>
+
+    <script src="js/router.js"></script>
+    <script src="js/main.js"></script>
+
+     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+</body>
+</html>

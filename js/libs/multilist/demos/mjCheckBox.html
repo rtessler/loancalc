@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>mjCheckBox</title>
+
+<script src="../js/libs/jquery-1.11.1.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<link rel="stylesheet" type="text/css" href="../css/mjAll.css">
+<script src="../js/mjCheckBox.js"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        function message(msg) {
+            //console.log(msg);
+            $("#status").html(msg);
+        }
+
+        $("#sidepanel ul li a").click(function (e) {
+
+            e.preventDefault();
+
+            $(e.target).parent().parent().find(".active").removeClass("active");
+            $(e.target).addClass("active");
+        });
+
+        $(".op li a").click(function (e) {
+
+            e.preventDefault();
+
+            var op = $(e.currentTarget).attr("data-op");
+
+            message(op);
+            message($("#checkbox1").mjCheckBox(op));
+        });
+
+
+        $("#checkbox1").mjCheckBox({ id: 1, text: "America", checked: 1, disabled: false, data: { x: 123, name: "rob" } });
+
+        $("#checkbox1").on("change", function (e, data) {
+            console.log(data);
+            message("id: " + data.id + " " + data.text + " checked = " + data.checked);
+        });
+
+        $("#checkbox2").mjCheckBox({ id: 1, text: "Canada", checked: 0, disabled: false, data: { x: 456, name: "jane" } });
+
+        $("#checkbox2").on("change", function (e, data) {
+            console.log(data);
+            message("id: " + data.id + " " + data.text + " checked = " + data.checked);
+        });
+
+        $("#checkbox3").mjCheckBox({ id: 1, text: "France", checked: 0, disabled: true, data: { x: 789, name: "elvis" } });
+
+        $("#checkbox3").on("change", function (e, data) {
+            console.log(data);
+            message("id: " + data.id + " " + data.text + " checked = " + data.checked);
+        });
+
+        $("#checkbox4").mjCheckBox({ id: 1, text: "Australia in the Southern Hemisphere of the Planet", checked: 0, disabled: false, image: "images/britany.jpg", data: { x: 789, name: "elvis" } });
+
+        $("#checkbox4").on("change", function (e, data) {
+            console.log(data);
+            message("id: " + data.id + " " + data.text + " checked = " + data.checked);
+        });
+    });
+
+
+</script>
+
+</head>
+
+<body>
+
+<div class="demo wrapper">
+
+    <div id="sidepanel">
+
+	    <ul>
+		    <li><a class="checkbox active">checkbox</a></li>
+	    </ul>
+
+        <h4>functions</h4>
+
+        <ul class="op">
+            <li><a href="#" data-op="check">check</a></li>
+            <li><a href="#" data-op="uncheck">uncheck</a></li>
+            <li><a href="#" data-op="disable">disable</a></li>
+            <li><a href="#" data-op="enable">enable</a></li>
+            <li><a href="#" data-op="get">get</a></li>
+            <li><a href="#" data-op="half-tick">half tick</a></li>
+            <li><a href="#" data-op="close">close</a></li>
+            <li><a href="#" data-op="hasChanged">has Changed?</a></li>
+        </ul>
+
+    </div>
+
+    <div class="content">
+       
+        <div id="list-container">
+
+            <div id="checkbox1" style="float: left;"></div> 
+            <div id="checkbox2" style="float: left;"></div>
+            
+            <div id="checkbox3" ></div>
+            <div id="checkbox4" ></div>        
+         
+        </div>
+
+        <div id="status"></div> 
+
+    </div>
+
+</div>  <!-- wrapper -->
+
+</body>
+</html>
+
+
+

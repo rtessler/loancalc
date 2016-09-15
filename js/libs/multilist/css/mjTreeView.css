@@ -1,0 +1,88 @@
+.mj-treeview {
+    position: relative;
+    width: 100%;
+    height: 100%;           /* actual height depends on container */
+    /*min-width: 100px;
+    min-height: 36px; 
+    overflow: hidden;*/    
+}
+
+.mj-treeview .mj-root {    
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.mj-treeview .mj-list { list-style: none; padding: 0px; /*height: 100%;*/ /*overflow-x: hidden;*/ overflow: hidden; max-height: inherit; }
+
+.mj-treeview .mj-list .mj-list { padding-left: 15px; width: 100%; }      /* indent level */
+
+.mj-treeview .mj-list .mj-leaf {  margin-left: 18px; overflow: hidden; }
+
+.mj-treeview .mj-list .mj-item { line-height: 12px; overflow: hidden; }
+
+
+.mj-treeview .mj-list .mj-item .mj-expander { position: relative; top: -2px; margin-right: 4px; /*float: left;*/ display: inline-block; }
+.mj-treeview .mj-list .mj-item .mj-expander.mj-open {  width: 14px; height: 14px; background: url('../images/arrow-down.png') no-repeat center; }
+.mj-treeview .mj-list .mj-item .mj-expander.mj-closed { width: 14px; height: 14px; background: url('../images/arrow-right.png') no-repeat center;  }
+
+.mj-treeview .mj-list .mj-item .mj-content { /*float: left;*/ text-decoration: none; color: inherit; cursor: default; display: inline-block; }
+
+.mj-treeview .mj-list .mj-item .mj-content > div {
+    /*display: table-cell;
+    vertical-align: middle;
+    border-collapse: initial;*/
+    display: inline-block;
+}
+
+.mj-treeview .mj-list .mj-item .mj-content .mj-image { padding-left: 5px; padding-right: 5px; position: relative; }
+
+.mj-treeview .mj-list .mj-item .mj-content .mj-text {
+                                 display: block;
+                                 margin-left: 2px;
+                                 padding: 3px;                                                            
+                                 max-width: 250px;
+}
+
+.mj-treeview .mj-list .mj-item .mj-content .mj-text:hover { /*background: #e8e8e8;*/ border: 1px solid #ccc; border-radius: 5px; }
+
+.mj-treeview .mj-filter-box {
+    position: absolute;
+    left:0px;
+    right:0px;
+    bottom: 0px;
+    border-top: 1px solid #ccc;
+    height: 34px;
+}
+
+.mj-treeview .mj-searchbox-container {
+    position: absolute;
+    left: 0px;
+    right: 46px;
+}
+
+.mj-treeview .mj-filter-box input.mj-searchbox {
+    padding: 3px;
+    border: 1px solid #b0b0b0;
+    margin: 5px;
+    outline: none;
+    width: 100%;
+}
+
+.mj-treeview .mj-filter-box div.mj-search-btn {
+    background: #b0b0b0 url('../images/Search_White.png');
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: 2px 2px;
+    width: 18px;
+    height: 18px;
+    padding: 3px;
+    position: relative;
+    top: 5px;
+    right: 5px;
+    float: right;
+}

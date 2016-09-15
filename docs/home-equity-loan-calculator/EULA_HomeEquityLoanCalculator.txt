@@ -1,0 +1,64 @@
+SOFTWARE END USER LICENSE AGREEMENT
+
+PLEASE READ THE FOLLOWING TERMS AND CONDITIONS.
+
+BY USING THIS FREEWARE VERSION OF THE Home Equity Loan Calculator ("Software") AND THE ASSOCIATED FILES AND WRITTEN MATERIALS ("Documentation"), YOU AGREE THAT ALL OF THE TERMS AND CONDITIONS BELOW APPLY TO YOU AND ANYONE ELSE WHO USES THIS SOFTWARE, IF EITHER:
+
+    * YOU CLICK THE "ACCEPT" BUTTON, OR
+    * PUT A CHECK IN A BOX INDICATING THAT YOU HAVE READ THIS AGREEMENT AND ACCEPT IT'S TERMS, OR
+    * YOU COPY, INSTALL, OR USE THIS SOFTWARE,
+    * YOU PERMIT OR ENABLE OTHERS TO COPY, INSTALL OR USE THIS SOFTWARE.
+
+IF YOU DO NOT AGREE, PLEASE TERMINATE DOWNLOAD AND INSTALLATION IMMEDIATELY, AND DO NOT USE THIS SOFTWARE.
+
+1. License Grant
+
+(a) "You" means the person or company who is being licensed to use the Software or Documentation. "We," "us" and "our" means Vertex42, LLC.
+
+(b) We hereby grant you a nonexclusive license to use this Software, provided that YOU DO NOT:
+
+    * Distribute the Software
+    * Copy the Documentation
+    * Copy the Software except for non-commercial use or to make archival or backup copies as provided above
+    * Merge the Software into another program
+    * Reverse engineer, decompile, or disassemble the Software
+    * Remove any proprietary notices or labels on the Software
+    * Place the Software onto a server so that it is accessible via a public network such as the Internet
+    * Sublicense, rent, lease or lend any portion of the Software 
+
+2. Title / Copyright
+
+The Software and Documentation are protected by United States copyright laws and international treaties. We remain the owner of all right, title and interest in the Software and Documentation. You must treat the Software and Documentation like any other copyrighted material (a book for example).
+
+3. Archival or Backup Copies
+
+You may copy the Software for personal use, back up, and archival purposes, provided that the original and each copy is kept in your possession and that your installation and use of the Software does not exceed that allowed in the "License Grant" section above.
+
+4. DISCLAIMER OF WARRANTY
+
+THE SOFTWARE AND THE ACCOMPANYING FILES AND DOCUMENTATION ARE PROVIDED "AS IS" AND WITHOUT WARRANTY OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE OWNER FURTHER DISCLAIMS ALL WARRANTIES, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OF MERCHANT ABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. THE ENTIRE RISK ARISING OUT OF THE USE AND/OR PERFORMANCE OF THE PRODUCT AND/OR DOCUMENTATION REMAINS WITH THE USER TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, AND IN NO EVENT SHALL THE OWNER BE LIABLE FOR ANY CONSEQUENTIAL, INCIDENTAL, DIRECT, INDIRECT, SPECILA, PUNITIVE, OR OTHER DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR OTHER PECUNIARY LOSS) ARISING OUT OF THIS AGREEMENT OR THE USE OF OR INABILITY TO USE THE PRODUCT, EVEN IF THE OWNER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. ANY LIABILITY OF THE OWNER SHALL BE EXCLUSIVELY LIMITED TO THE PRODUCT RELACEMENT OR RETURN OF THE PURCHASE/LICENSING PRICE. NO OTHER ADVERTISING, DESCRIPTION OR REPRESENTATION, WHETHER OR NOT MADE BY THE OWNER OR THE OWNER'S DEALER, DISTRIBUTOR, AGENT OR EMPLOYEE, SHALL BE BINDING UPON THE OWNER OR SHALL CHANGE THE TERMS OF THIS WARRANTY. THIS LIMITED WARRANTY GIVES YOU THE SPECIFIC LEGAL RIGHTS. YOU MAY HAVE OTHERS, WHICH VARY FROM STATE/JURISDICTION TO STATE/JURISDICTION.
+
+5. Term and Termination
+
+This license agreement takes effect upon your use of the Software and remains effective until terminated. You may terminate it at any time by destroying all copies of the Software and Documentation in your possession. It will also automatically terminate if you fail to comply with any term or condition of this license agreement. You agree on termination of this license to destroy all copies of the Software and Documentation in your possession. ALL DISCLAIMERS HEREIN SHALL SURVIVE TERMINATION.
+
+6. Disputes
+
+(a) This license agreement shall be governed by, construed and enforced in accordance with the laws of the New Mexico, as it is applied to agreements entered into and to be performed entirely within such jurisdiction.
+
+(b) To the extent you have in any manner violated or threatened to violate Vertex42, LLC and/or its affiliates' intellectual property rights, Vertex42, LLC and/or its affiliates may seek injunctive or other appropriate relief in any state or federal court in the State of New Mexico, and you consent to exclusive jurisdiction and venue in such courts.
+
+(c) Any other disputes will be resolved as follows:
+
+    * If a dispute arises under this agreement, we agree to first try to resolve it with the help of a mutually agreed-upon mediator in the following location: Albuquerque, New Mexico. Any costs and fees other than attorney fees associated with the mediation will be shared equally by each of us.
+    * If it proves impossible to arrive at a mutually satisfactory solution through mediation, we agree to submit the dispute to binding arbitration at the following location: Albuquerque, New Mexico, under the rules of the American Arbitration Association. Judgment upon the award rendered by the arbitration may be entered in any court with jurisdiction to do so.
+
+7. General Provisions
+
+(a) This written license agreement is the exclusive agreement between you and us concerning the Software and Documentation and supersedes any prior purchase order, communication, advertising or representation concerning the Software.
+
+(b) This license agreement may be modified only by a writing signed by you and us.
+
+(c) In the event of litigation between you and us concerning the Software or Documentation, the prevailing party in the litigation will be entitled to recover attorney fees and expenses from the other party.
+
+(d) You agree that the Software will not be shipped, transferred or exported into any country or used in any manner prohibited by the United States Export Administration Act or any other export laws, restrictions or regulations.

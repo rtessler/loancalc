@@ -1,0 +1,57 @@
+﻿.mj-grid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.mj-grid .mj-table-container {
+    position: absolute;
+    left: 0;
+    right: 22px;
+    top: 0px;
+}
+
+.mj-grid .mj-grid-table {
+    display: table;
+    /*font-family: Verdana,sans-serif, Arial; font-style: normal;*/ 
+    font-size: 12px;
+    width: 100%;
+    background: #fff;
+}
+
+.mj-grid .mj-grid-header { display: table-header-group; }    
+.mj-grid .mj-grid-body { display: table-row-group; }
+
+.mj-grid .mj-grid-header > div, .mj-grid .mj-grid-body > div { display: table-row; }                                          
+
+.mj-grid .mj-grid-header > div > div, .mj-grid .mj-grid-body > div > div {
+    display: table-cell;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 3px;
+    text-align: center;
+    vertical-align: middle;
+}
+.mj-grid .mj-grid-header {
+    background: #e8e8e8;
+}
+
+.mj-grid .mj-grid-header > div > div {
+    border-top: 1px solid #ddd;    
+    height: 30px;
+}
+
+.mj-grid .mj-grid-header > div > div:first-child { border-left: 1px solid #ddd; }
+.mj-grid .mj-grid-header > div > div:last-child { border-right: 1px solid #ddd; }
+
+.mj-grid .mj-grid-body > div > div:first-child { border-left: 1px solid #ddd; }
+.mj-grid .mj-grid-body > div > div:last-child { border-right: 1px solid #ddd; }
+
+.mj-grid .mj-grid-scrollbar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 22px;
+    z-index: 1;
+}

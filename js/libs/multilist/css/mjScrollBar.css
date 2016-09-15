@@ -1,0 +1,55 @@
+﻿.mj-scrollbar {
+    position: relative;
+    width: 22px;
+    height: 100%;
+    background: #efefef;
+    z-index: 1;
+}
+
+.mj-scrollbar .mj-scrollbar-track {
+    position: absolute;
+    top: 22px;
+    bottom: 24px;    
+    margin-left: 1px;
+    width: 20px;
+}
+
+.mj-scrollbar .mj-scrollbar-thumb {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+
+.mj-scrollbar .mj-scrollbar-thumb.mj-scrollbar-thumb-drag {
+    background: #ccc;
+}
+
+.mj-scrollbar .mj-arrow {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+.mj-scrollbar .mj-arrow-up {
+    margin-left: 1px;
+    margin-bottom: 1px;
+    top: 0px;
+    border-bottom: 1px solid #ddd;
+}
+
+.mj-scrollbar .mj-arrow-up:hover {
+    background-color: #fff;
+}
+
+.mj-scrollbar .mj-arrow-down {
+    margin-left: 1px;
+    margin-top: 1px;
+    bottom: 0px;
+    border-top: 1px solid #ddd;
+}
+
+.mj-scrollbar .mj-arrow-down:hover {
+    background-color: #fff;
+}

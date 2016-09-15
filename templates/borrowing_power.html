@@ -1,0 +1,255 @@
+<div class="calc borrowing-power">
+
+<div class="outer-container rounded">
+<h3>Borrowing Power</h3>
+
+<div class="calculator rounded">
+
+<div class="top-div">
+
+<p class="section-heading">Enter your loan details</p>
+
+<div class="calc-panel rounded panel">
+
+<div style="float:left; width:273px; ">
+
+<strong>Enter your income details</strong><br><br>
+
+<table cellpadding="0" cellpadding="0">
+<tr style="line-height:22px;">
+    <td>
+    Joint Income <input id="joint_income" name="joint_income" type="checkbox" value="1" />
+    </td>
+    
+    <td>
+    Dependents <input id="dependents" name="dependents"  value="0" class="very-short-text"/>
+    </td>
+</tr>
+
+<tr style="line-height:22px;">
+    <td>
+    <label for="net_salary_type1">Net salary</label><br>
+    <select id="net_salary_type1" name="net_salary_type1">
+	    <option value="annually">Annually</option>
+        <option value="monthly" selected>Monthly</option>
+        <option value="fortnightly">Fortnightly</option>
+        <option value="weekly">Weekly</option>
+    </select>
+    </td>
+    
+    <td>
+    <br>
+    $ <input id="net_salary1" name="net_salary1" value="4,000" class="long-text" />
+    </td>
+</tr>
+
+<tr style="line-height:22px;">
+    <td>
+    <label for="net_salary_type2">Net salary 2</label><br>
+    <select id="net_salary_type2" name="net_salary_type2" disabled class="readonly">
+	    <option value="annually">Annually</option>
+        <option value="monthly" selected>Monthly</option>
+        <option value="fortnightly">Fortnightly</option>
+        <option value="weekly">Weekly</option>
+    </select>
+    </td>
+    
+    <td>
+    <br>
+    $ <input id="net_salary2" name="net_salary2" value="0" class="long-text readonly" readonly />
+    </td>
+</tr>
+
+<tr style="line-height:22px;">
+    <td>
+    <label for="other_net_income_type">Other net income</label><br>
+    <select id="other_net_income_type" name="other_net_income_type" >
+	    <option value="annually">Annually</option>
+        <option value="monthly" selected>Monthly</option>
+        <option value="fortnightly">Fortnightly</option>
+        <option value="weekly">Weekly</option>
+    </select>
+    </td>
+    
+    <td>
+    <br>
+    $ <input id="other_net_income" name="other_net_income" value="0" class="long-text" />
+    </td>
+</tr>
+
+<tr style="line-height:22px;">
+<td colspan="2">
+    Maximum percent of income available
+    <br>
+    <input id="max_income_available" name="max_income_available" class="short-text readonly" value="85.0" readonly /> %
+    <input id="max_income_available_default" name="max_income_available_default" type="checkbox" checked value="1" /> Use default
+</td>
+</tr>
+</table>
+
+</div>
+
+<div style="float: left; width:272px;">
+
+    <strong>Enter your expense details</strong><br><br>
+    
+    <label for="annual_expenses">Annual Expenses</label>
+    <input id="annual_expenses" name="annual_expenses" value="15,624" class="short-text readonly" /> 
+    <input id="annual_expenses_default" name="annual_expenses_default" type="checkbox" checked value="1" />
+    Use default
+    <br>
+    <br>
+    
+    <table cellspacing="0" cellpadding="0">
+    <tr>
+        <td>Monthly car loan repayment</td>
+        <td nowrap> $ <input id="car_loan" name="car_loan" value="350" class="short-text" /></td>
+    </tr>
+    
+    <tr><td>&nbsp;</td></tr>
+    
+    <tr>
+        <td>Average monthly credit card repayment</td>
+        <td nowrap>$ <input id="credit_card" name="credit_card" value="0" class="short-text" /></td>
+    </tr>
+    
+    <tr><td>&nbsp;</td></tr>
+    
+    <tr>
+        <td>
+        
+        <label for="other_payments_type">Other payments</label><br>
+            <select id="other_payments_type" name="other_payments_type" readonly>
+                <option value="annually">Annually</option>
+                <option value="monthly" selected>Monthly</option>
+                <option value="fortnightly">Fortnightly</option>
+                <option value="weekly">Weekly</option>
+            </select>
+        </td>
+        <td nowrap>$ <input id="other_payments" name="other_payments" value="0" class="short-text" /></td>
+    </tr>
+    </table>
+
+</div> 
+
+
+</div> <!-- calc-panel -->
+</div> <!-- top-div -->
+
+<br>
+
+<div class="middle-panel rounded panel">
+
+    <strong>Enter your loan details</strong>
+    <br>
+    <br>
+    
+    
+    <div style="float:left; width: 300px; ">
+        <label for="interest-rate" style="float:left;">Interest Rate</label>
+    
+        <div id="interest_rate_slider" class="slider" style=" top:2px;"></div>  
+        &nbsp; &nbsp;<input id="interest_rate" name="interest_rate" value="7.25" class="short-text" /> %
+    </div>
+    
+    <div >
+        <label for="loan_term" style="float:left; ">Loan term</label>  
+    
+        <div id="loan_term_slider" class="slider" style=" top:2px;"></div>  
+        &nbsp; &nbsp;<input id="loan_term" name="loan_term" value="25.0" class="short-text" />yr
+    </div>
+    
+    
+    <div style="padding-top:10px;">
+        <label for="interest_rate_buffer">Interest rate buffer</label>  
+    
+        <input id="interest_rate_buffer" name="interest_rate_buffer" value="1.50" class="short-text readonly"  readonly /> %
+    
+        <input id="interest_rate_buffer_default" name="interest_rate_buffer_default" type="checkbox" checked value="1" /> Use default
+    </div>
+
+</div> 
+
+<div class="bottom-div">
+
+	<p class="section-heading">View your results</p>
+
+    <div class="result-panel rounded panel">
+   
+		<div id="chart_div" ></div>    
+
+        <div id="result" class="rounded">
+        
+        	<table cellpadding="0" cellspacing="0" >
+            <tr>
+                <td><label id="label1">You can borrow up to:</label></td>
+                <td><label id="res1">0</label></td>
+            </tr>
+            
+            <tr>
+                <td><label id="label2">monthly repayments:</label></td>
+                <td><label id="res2">0</label></td>
+            </tr>
+            </table>
+        
+        </div>
+        
+    </div> <!-- result-panel -->
+
+</div> <!-- bottom-div> -->
+
+<div id="email-form" >
+
+<form name="email-form" action="#" method="post">
+
+<h3>Email a Friend</h3>
+
+<div id="errmsg"></div>
+
+<div id="email-response"></div>
+
+<div style="float:left; padding-right: 30px; ">
+<label for="from">Your email address</label><br>
+<input id="from" name="from" class="text normal-text" />
+</div>
+
+<div>
+<label for="to">Your Friend's email address</label><br>
+<input id="to" name="to" class="text normal-text" />
+</div>
+
+<div>
+<label for="subject">Subject</label><br>
+<input id="subject" name="subject" class="text long-text" value="mortgage loan repayment"/>
+</div>
+
+<div>
+<label for="message">Message</label><br>
+<textarea id="message" name="message" cols="40" rows="4" class="text"></textarea>
+</div>
+
+<button type="submit" id="send_email" value="Send" >Send</button>
+
+</form>
+</div>
+
+
+</div> <!-- calculator -->
+
+<div class="functions">
+
+<ul>
+<li><br><a class="info" href="#" title="info"><img src="images/info.png" width="19" height="18"></a><br><br></li>
+<li><a class="print" href="#" title="print"><img src="images/print.png" width="18" height="19"></a><br><br></li>
+<li><a class="save" href="#" title="save"><img src="images/save.png" width="18" height="18"></a><br><br></li>
+<li><a class="email" href="#" title="email"><img src="images/email.png" width="16" height="17"></a><br><br></li>
+</ul>
+
+</div>
+
+<div id="infodialog" title="Borrowing power Calculator"></div>
+
+</div> <!-- outer-container -->
+
+
+</div>

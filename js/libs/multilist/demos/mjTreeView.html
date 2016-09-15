@@ -1,0 +1,413 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>Treeview</title>
+
+<script src="../js/libs/jquery-1.11.1.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<link rel="stylesheet" type="text/css" href="../css/mjAll.css">
+<script src="../js/mjTreeView.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        function message(msg) {
+
+            $("#status").html(msg);
+        }
+
+        $("#sidepanel ul li a").click(function (e) {
+
+            e.preventDefault();
+
+            $(e.target).parent().parent().find(".active").removeClass("active");
+            $(e.target).addClass("active");
+        });
+
+        $(".op a").click(function (e) {
+
+            e.preventDefault();
+
+            var op = $(e.currentTarget).attr("data-op");
+
+            message("");
+
+            switch (op) {
+
+                case "getChecked":
+
+                    var arr = $("#treeview1").mjTreeView("getChecked");
+
+                    var checked = [];
+
+                    for (var i = 0; i < arr.length; i++)
+                        checked.push(arr[i].id);
+
+                    message(checked.join());
+                    break;
+
+                case "getSelected":
+
+                    var arr = $("#treeview1").mjTreeView("getSelected");
+
+                    var selected = [];
+
+                    for (var i = 0; i < arr.length; i++)
+                        selected.push(arr[i].id);
+
+                    message(selected.join());
+                    break;
+
+                case "insert":
+
+                    data = { id: 99, pid: 5, text: "James Blake", selected: 0, image: "test.png" };
+
+                    $("#treeview1").mjTreeView("insert", 5, data);
+                    break;
+
+                case "remove":
+
+                    $("#treeview1").mjTreeView("remove", 5);
+                    break;
+
+                case "hasChanged":
+
+                    var changed = $("#treeview1").mjTreeView("hasChanged");
+                    message("changed = " + changed);
+                    break;
+
+                case "expand":
+
+                    $("#treeview1").mjTreeView("expand", 1);
+                    break;
+
+                case "collapse":
+
+                    $("#treeview1").mjTreeView("collapse", 1);
+                    break;
+
+                default:
+
+                    $("#treeview1").mjTreeView(op);
+                    break;
+            }
+        });
+
+        function bindEvents() {
+
+            $("#treeview1").on("select", function (e, data) {
+
+                message("id: " + data.id + " " + data.text + " selected = " + data.selected);
+            });
+
+            $("#treeview2").on("select", function (e, data) {
+
+                message("id: " + data.id + " " + data.text + " selected = " + data.selected);
+            });
+        }
+
+        $(".basic").click(function (e) {
+
+            var data1 = [
+                { id: 1, pid: null, text: "Fender", checked: 1 },
+                    { id: 2, pid: 1, text: "Stratocaster", checked: 1 },
+
+                        { id: 21, pid: 2, text: "Scratch plate white/black/gold", checked: 1 },
+                        { id: 22, pid: 2, text: "fret wire i short supply", checked: 1 },
+                        { id: 23, pid: 2, text: "single coil pickups verses humbuckers", checked: 1 },
+
+                    { id: 3, pid: 1, text: "Telecaster", checked: 1 },
+                    { id: 4, pid: 1, text: "Jaguar", checked: 1 },
+
+                        { id: 41, pid: 4, text: "Rosewood finish", checked: 1 },
+                        { id: 42, pid: 4, text: "Sunburst finish", checked: 1 },
+                        { id: 43, pid: 4, text: "strap original fender", checked: 1 },
+
+                    { id: 5, pid: 1, text: "Acoustic", checked: 1 },
+
+                { id: 99, text: "empty node", checked: 1 },
+
+                { id: 6, pid: null, text: "Gibson", checked: 1 },
+                    { id: 7, pid: 6, text: "SG 1970 limited edition", checked: 1 },
+                    { id: 8, pid: 6, text: "Les Paul custom triple pickup", checked: 1 },
+                    { id: 9, pid: 6, text: "335", checked: 1 },
+                    { id: 10, pid: 6, text: "Flying V", checked: 1 },
+                    { id: 11, pid: 6, text: "Robot", checked: 1 },
+            ];
+
+            var data2 = [
+                { id: 1, pid: null, text: "Computers", checked: 1 },
+                { id: 2, pid: 1, text: "Laptops", checked: 1 },
+                { id: 15, pid: 2, text: "Dell", checked: 1 },
+                { id: 16, pid: 2, text: "Sony", checked: 1 },
+                { id: 17, pid: 2, text: "Hewlett Packard", checked: 1 },
+
+                { id: 24, pid: 1, text: "Desktops", checked: 1 },
+
+                    { id: 25, pid: 24, text: "Compac", checked: 1 },
+                    { id: 26, pid: 24, text: "Hewlett Packard", checked: 1 }
+            ];
+
+            $("#treeview1").mjTreeView({ data: data1, type: 'checkbox', filter: true });
+            $("#treeview2").mjTreeView({ data: data2, type: 'checkbox' });
+
+            bindEvents();
+        });
+
+        $(".hierarchy").click(function (e) {
+
+            var data1 = [
+                { id: 1, text: "Fender", items: [
+                    { id: 2, text: "Stratocaster", items: [
+
+                        { id: 21, text: "Scratch plate" },
+                        { id: 22, text: "fret" },
+                        { id: 23, text: "single coil" }]
+                    },
+
+                    { id: 3, text: "Telecaster" },
+                    { id: 4, text: "Jaguar", items: [
+
+                        { id: 41, text: "Rosewood" },
+                        { id: 42, text: "Sunburst" },
+                        { id: 43, text: "strap" }]
+                    },
+
+                    { id: 5, text: "Acoustic" }]
+                },
+
+                { id: 99, text: "empty node" },
+
+                { id: 6, text: "Gibson", items: [
+                    { id: 7, text: "SG" },
+                    { id: 8, text: "Les Paul" },
+                    { id: 9, text: "335" },
+                    { id: 10, text: "Flying V" },
+                    { id: 11, text: "Robot" }]
+                }
+            ];
+
+            var data2 = [
+                { id: 1, text: "Computers", items: [
+                    { id: 2, text: "Laptops", items: [
+                                                                { id: 15, text: "Dell" },
+                                                                { id: 16, text: "Sony" },
+                                                                { id: 17, text: "Hewlett Packard" }]
+                    },
+
+                    { id: 24, text: "Desktops", items: [
+
+                                                                { id: 25, text: "Compac" },
+                                                                { id: 26, text: "Hewlett Packard" }]
+                    }
+                ]
+                }];
+
+            $("#treeview1").mjTreeView({ data: data1, type: 'checkbox', has_hierarchy: true });
+            $("#treeview2").mjTreeView({ data: data2, type: 'checkbox', has_hierarchy: true });
+
+            bindEvents();
+        });
+
+        $(".ljtree").click(function (e) {
+
+            var data = [
+            { id: 1, text: "Automotive" },
+                { id: 2, pid: 1, text: "Accessories" },
+                    { id: 3, pid: 2, text: "Caravan/Trailer" },
+                    { id: 4, pid: 2, text: "Other" },
+
+                { id: 5, pid: 1, text: "Car Dealers" },
+                    { id: 6, pid: 5, text: "Independent Dealer" },
+                    { id: 7, pid: 5, text: "Manufacturer Network" },
+            { id: 8, text: "Clothing and Accessories" },
+                { id: 9, pid: 8, text: "Accessories" },
+                    { id: 10, pid: 9, text: "Jewllery" },
+                    { id: 11, pid: 9, text: "Range" },
+                    { id: 12, pid: 9, text: "Watches" },
+                    { id: 13, pid: 9, text: "Sunglasses" },
+                { id: 14, pid: 8, text: "Clothing" },
+                    { id: 15, pid: 14, text: "Mens Wear" },
+                    { id: 16, pid: 14, text: "Range" },
+                    { id: 17, pid: 14, text: "Safety and Work Wear" },
+                    { id: 18, pid: 15, text: "Womens Wear" },
+            ];
+
+            $("#treeview1").mjTreeView({ data: data, recursive: false });
+
+            //var nodes = $("#treeview1").mjTreeView("getAll");
+
+            //for (var i = 0; i < data.length; i++) 
+            //{
+            //$("#treeview1").mjTreeView("halfTick", data[i].id);
+            //}
+
+            $("#treeview1").mjTreeView("halfTickAll");
+
+            $("#treeview1").on("select", function (e, d) {
+
+                var selected = $("#treeview1").mjTreeView("getSelected");
+
+                if (selected.length == 0) {
+
+                    // nothing selected
+
+                    $("#treeview1").mjTreeView("halfTickAll");
+                    self.nothing_selected = true;
+                }
+                else
+                    if (self.nothing_selected && selected.length == 1) {
+
+                        $("#treeview1").mjTreeView("deselectAll");
+                        $("#treeview1").mjTreeView("select", data.id);
+
+                        self.nothing_selected = false;
+                    }
+
+
+                message("...id: " + d.id + " selected = " + d.selected);
+
+                var siblings = $("#treeview1").mjTreeView("getSiblings", d.id);
+
+                var count = 0;
+
+                $.each(siblings, function (index, n) {
+
+                    if (n.selected == 1)
+                        count++;
+                });
+
+                if (d.selected == 1) {
+                    // if no other siblings are selected, deselect other siblings
+
+                    // only 1 ticked which is ourself
+
+                    if (count == 0) {
+                        $.each(siblings, function (index, n) {
+
+                            if (n.id != d.id)
+                                $("#treeview1").mjTreeView("deselect", n.id);
+                        });
+                    }
+                }
+                else
+                    if (d.selected == 0) {
+                        // we deselected something
+
+                        // if no other siblings are selected, deselect other siblings
+
+                        if (count == 0) {
+                            // half tick all siblings including ourself
+
+                            $("#treeview1").mjTreeView("halfTick", d.id);
+
+                            $.each(siblings, function (index, n) {
+                                $("#treeview1").mjTreeView("halfTick", n.id);
+                            });
+                        }
+                    }
+
+                // now deselect parents which have not been specifically ticked
+
+                var p = $("#treeview1").mjTreeView("getItem", d.pid);
+
+                if (d.selected == 1) {
+                    while (p) {
+                        //var node = $("#treeview1").mjTreeView("getData", parent.id);
+                        $("#treeview1").treeview("select", p.id);
+                        var p = $("#treeview1").mjTreeView("getItem", p.pid);
+                    }
+                }
+                else {
+                    /*
+                    while (parent)
+                    {
+                        var node = $("#ljtree").mjTreeView("get", parent.id);
+                        $("#ljtree").treeview("deselect", node.id);
+                        var parent = $("#ljtree").mjTreeView("getParent", node.id);
+                    } 
+                    */
+                }
+            });
+
+            bindEvents();
+
+            $(".getSelected").click(function (e) {
+
+                e.preventDefault();
+                var arr = $(".treeview").mjTreeView("getSelected");
+
+                var selected = [];
+
+                for (var i = 0; i < arr.length; i++)
+                    selected.push(arr[i].id);
+
+                message(selected.join());
+            });
+
+        });
+
+        $(".basic").click();
+    });
+
+
+</script>
+
+</head>
+
+<body>
+
+<div class="demo wrapper">
+
+    <div id="sidepanel">
+
+	    <ul>
+		    <li><a href="#" class="basic">basic</a></li>
+            <li><a href="#" class="hierarchy">build from hierarchical data</a></li>
+		    <li><a href="#" class="ljtree">lj tree</a></li>
+	    </ul>
+
+        <h4>functions</h4>
+
+        <ul class="op">
+            <li><a href="#" data-op="getChecked">get checked</a></li>            
+            <li><a href="#" data-op="checkAll">check all</a></li>
+            <li><a href="#" data-op="uncheckAll">uncheck all</a></li>
+            <li><a href="#" data-op="halfTickAll">halfTickAll</a></li> 
+            <li><a href="#" data-op="getSelected">get selected</a></li>           
+            <li><a href="#" data-op="selectAll">select all</a></li>
+            <li><a href="#" data-op="deselectAll">deselect all</a></li>
+            <li><a href="#" data-op="insert">insert</a></li>
+            <li><a href="#" data-op="remove">remove</a></li>
+            <li><a href="#" data-op="disable">disabke</a></li>
+            <li><a href="#" data-op="enable">enable</a></li>
+            <li><a href="#" data-op="close">close</a></li>
+            <li><a href="#" data-op="hasChanged">has Changed?</a></li>
+            <li><a href="#" data-op="expand">expand</a></li>
+            <li><a href="#" data-op="collapse">collapse</a></li>
+            <li><a href="#" data-op="expandAll">expand all</a></li>
+            <li><a href="#" data-op="collapseAll">collapse all</a></li>
+        </ul>
+
+    </div>
+
+    <div class="content">
+       
+        <div id="list-container">
+
+            <div id="treeview1" class="treeview"></div> 
+            <div id="treeview2" class="treeview"></div>            
+         
+        </div>
+
+         <div id="status"></div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

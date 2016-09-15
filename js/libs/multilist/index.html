@@ -1,0 +1,187 @@
+﻿<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>mjTools</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+<style>
+
+body {
+    margin: 0px;
+    padding: 0px;
+    color: #7f7f7f;
+    font-family:  verdana, sans-serif;
+    font-weight: normal;
+    width: 100%;
+    height: 100%;
+}
+
+.box50 {
+    box-sizing: border-box;
+    width: 50%;
+    float: left;
+}
+
+.left-panel {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    bottom: 0px;
+    background: #ee8934;
+	width: 150px;
+    color: #fff;
+    padding: 5px;
+}
+
+.left-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.left-panel ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px;
+}
+
+.content {
+    position: absolute;
+    top: 30px;
+    left: 150px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.main {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 50%;
+    bottom: 0px;   
+}
+
+.main .iframe {
+	width: 700px;
+	height: 700px;
+	background: #ccc;
+    border: 1px solid #ccc;
+}
+
+.right-panel {
+    margin-left: 5px;
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.right-panel .source-code {
+width: 100%;
+height: 100%;
+}
+
+</style>
+
+<script src="js/libs/jquery-1.11.1.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $(".left-panel a").click(function (e) {
+
+            e.preventDefault();
+
+            var id = $(this).attr("data-id");
+
+            var map = {};
+            map["checkbox"] = "mjCheckBox.html";
+            map["radiobutton"] = "mjRadioButton.html";
+            map["grid"] = "mjGrid.html";
+            map["listbox"] = "mjListBox.html";
+            map["menu"] = "mjMenu.html";
+            map["panel"] = "mjPanel.html";
+            map["scrollbar"] = "mjScrollBar.html";
+            map["treeview"] = "mjTreeView.html";
+
+            console.log("filename = " + map[id]);
+
+            $(".main .iframe").attr("src", "demos/" + map[id]);
+            //$(".source-code").load("demos/" + map[id], function (data) { });
+
+            $.ajax({
+                url: "demos/" + map[id],
+                data: null,
+                success: function (d) {
+
+                    $(".source-code").text(d);
+                },
+                dataType: "html"
+            })
+        });
+
+});
+
+</script>
+
+</head>
+
+<body>
+
+<header>
+    <nav class="header">
+
+        <a href="#" class="logo"><img src="images/logo.png" /></a>
+        <a href="#" class="download">Download</a>
+        <a href="#" class="about">About</a>
+
+    </nav>
+
+    <div style="font-size: 0.8em">Tested on ie 9, chrome, firefox and safari. 
+        Download from <a href='https://github.com/rtessler/multilistjs' target="_blank">github</a>.
+        <a href="mailto:robert@rtessler.com">Robert Tessler Oct-2013</a>
+    </div>
+
+</header>
+
+<section class="left-panel">
+
+    <ul>
+        <li><a href="#" data-id="listbox">ListBox</a></li>
+        <li><a href="#" data-id="treeview">TreeView</a></li>
+        <li><a href="#" data-id="checkbox">CheckBox</a></li>
+        <li><a href="#" data-id="radiobutton">Radiobutton</a></li>
+        <li><a href="#" data-id="menu">Menu</a></li>
+        <li><a href="#" data-id="grid">Grid</a></li>
+        <li><a href="#" data-id="scrollbar">Scrollbar</a></li>
+        <li><a href="#" data-id="panel">Panel</a></li>
+        
+    </ul>
+
+</section>
+
+<div class="content">
+
+    <section class="main box50">
+
+        <div class="theme"></div>
+
+	    <iframe class="iframe" src="" sandbox="allow-same-origin allow-top-navigation allow-scripts"></iframe>
+
+        <div class="documentation"></div>
+    
+    </section>
+
+    <section class="right-panel box50">
+
+	    <textarea class="source-code"></textarea>
+
+    </section>
+
+</div>
+
+</html>

@@ -1,0 +1,30 @@
+﻿.mj-panel .mj-arrow {
+    margin-top: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    transition-duration: 0.1s;
+}
+
+.mj-panel .mj-item {
+    padding: 3px;
+}
+
+.mj-panel .mj-hidden { display: none; }
+
+.mj-panel .mj-item.mj-header {
+    cursor: pointer;
+    color: #fff;
+    background: #b0b0b0;
+    margin-bottom: 3px;
+    height: 15px;
+}
+
+
+/*.mj-panel .mj-rotate-90 {
+    transform: rotate(90deg);
+}
+
+.mj-panel .mj-rotate-0 {
+    transform: rotate(0deg);
+}*/

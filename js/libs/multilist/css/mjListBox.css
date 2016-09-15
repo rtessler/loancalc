@@ -1,0 +1,78 @@
+.mj-listbox {
+    position: relative;
+    width: 100%;
+    height: 100%;           /* height depends on container */
+    min-width: 80px;
+    overflow: hidden;
+}
+
+.mj-listbox .mj-list {
+    margin-left: 5px;
+}
+
+.mj-listbox .mj-list .mj-item > div {
+    display: table-cell;
+    vertical-align: middle;
+    border-collapse: initial;
+}
+
+.mj-listbox .mj-list .mj-item .mj-image { padding-left: 3px; position: relative; margin-right: 3px; }
+
+.mj-listbox .mj-list .mj-item .mj-checkbox-box { border: 1px solid #aaa; 
+                                    width: 13px; 
+                                    height: 13px;  
+                                    background-color: #efefef; 
+}
+
+.mj-listbox .mj-list .mj-item .mj-checkbox-box.checked { background-image: url('../images/tick-13x13.png'); }   /* smaller image */
+
+.mj-listbox .mj-list .mj-item.mj-selected { background: #efefef; }
+
+.mj-listbox .mj-list .mj-item .mj-text { padding: 2px; margin-left: 1px; }
+
+.mj-listbox .mj-list .mj-item.mj-hover .mj-text { border: 1px solid #ccc; border-radius: 5px; }
+
+.mj-listbox .mj-list .mj-item .mj-label { width: 80px; }
+
+.mj-listbox .mj-list .mj-item .mj-input {
+    height: 15px;
+    padding: 5px;
+    width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin: 5px;
+}
+
+.mj-listbox .mj-filter-box {
+    border-top: 1px solid #ccc;
+    height: 34px;
+}
+
+.mj-listbox .mj-filter-box .searchbox-container {
+    position: absolute;
+    left: 0px;
+    right: 46px;
+}
+
+.mj-listbox .mj-filter-box input.searchbox {
+    padding: 3px;
+    border: 1px solid #b0b0b0;
+    margin: 5px;
+    outline: none;
+    width: 100%;
+}
+
+.mj-listbox .mj-filter-box div.search-btn {
+    background: #b0b0b0 url('../images/Search_White.png');
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: 2px 2px;
+    width: 18px;
+    height: 18px;
+    padding: 3px;
+    position: relative;
+    top: 5px;   
+    right: 5px;
+    float: right; 
+}
